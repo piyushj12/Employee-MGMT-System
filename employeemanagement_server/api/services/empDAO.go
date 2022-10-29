@@ -7,6 +7,7 @@ import (
 	"time"
 	"strconv"
 	"errors"
+	"strings"
 	"gopkg.in/mgo.v2/bson"
 	model "EmployeeAssisgnment/api/model"
 )
@@ -15,8 +16,9 @@ import (
 
 
 func ValidateDetails(login model.Login) (error,[]model.Login){
+	
 	var user []model.Login
-	if err := database.Collection().Find(bson.M{"username":login.Username,"password":login.Password,"empstatus":"active"}).All(&user); err != nil {
+	if err := database.MasterDB().Find(bson.M{"email":login.Email,"password":login.Password,"empstatus":"active"}).All(&user); err != nil {
 		return err,[]model.Login{}
 	}
 	fmt.Println(user)
@@ -40,8 +42,27 @@ func SaveEmployeeToDB(empDetails model.EmpDetails) error {
 	fmt.Println(pad)
 	empDetails.EmpID = empDetails.Firstname  + pad + strconv.Itoa(ranNum)
 	empDetails.Empstatus="Pending"
+	empDetails.Password=generatePassword()
+	empDetails.Empstatus="active"
+	fmt.Println(empDetails.Password)
+	type Login struct {
+		Email string `json:"email"`
+		Password string `json:"password"`
+		Role string `json:"role"`
+		Empstatus string `json:"empstatus"`
+	}
+	var master Login
+	master.Email=empDetails.Email
+	master.Password=empDetails.Password
+	master.Empstatus=empDetails.Empstatus
+	master.Role=empDetails.Role
+	
 	//query to insert
-	err:=database.Collection().Insert(empDetails)
+	err:=database.MasterDB().Insert(master)
+	if err != nil{
+		return err
+	}
+	err=database.Collection().Insert(empDetails)
 	if err != nil{
 		return err
 	}
@@ -97,15 +118,16 @@ func SearchEmpFromDB(empdetails interface{}) (error,[]model.EmpDetails){
 	return nil,employeelist
 }
 
-func ListEmpFromDB(empdetails interface{}) (error,[]model.EmpDetails){
+func AdminallEmpListFromDB(empdetails interface{}) (error,[]model.EmpDetails){
 	var employeelist []model.EmpDetails
-	origin:= empdetails.(map[string]interface {})
+	// origin:= empdetails.(map[string]interface {})
 	
-	for key,value:= range origin{
-		origin[key]=bson.M{"$regex":value,"$options":"i"}
-	}
-	origin["empstatus"]="Activated"
-	if err := database.Collection().Find(origin).All(&employeelist); err != nil {
+	// for key,value:= range origin{
+	// 	origin[key]=bson.M{"$regex":value,"$options":"i"}
+	// }
+	// origin["empstatus"]="active"
+	emp:=bson.M{"empstatus":"active"}
+	if err := database.Collection().Find(emp).All(&employeelist); err != nil {
 		return err,[]model.EmpDetails{}
 	}
 	return nil,employeelist
@@ -148,4 +170,50 @@ func ViewDeletedEmpFromDB() (error,[]model.EmpDetails){
 		return err,[]model.EmpDetails{}
 	}
 	return nil,employeelist
+}
+
+
+func generatePassword() string {
+
+	rand.Seed(time.Now().Unix())
+    minSpecialChar := 1
+    minNum := 1
+    minUpperCase := 1
+    passwordLength := 8
+	lowerCharSet   := "abcdedfghijklmnopqrst"
+    upperCharSet   := "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    specialCharSet := "!@#$%&*"
+    numberSet      := "0123456789"
+    allCharSet     := lowerCharSet + upperCharSet + specialCharSet + numberSet
+
+    var password strings.Builder
+
+    //Set special character
+    for i := 0; i < minSpecialChar; i++ {
+        random := rand.Intn(len(specialCharSet))
+        password.WriteString(string(specialCharSet[random]))
+    }
+
+    //Set numeric
+    for i := 0; i < minNum; i++ {
+        random := rand.Intn(len(numberSet))
+        password.WriteString(string(numberSet[random]))
+    }
+
+    //Set uppercase
+    for i := 0; i < minUpperCase; i++ {
+        random := rand.Intn(len(upperCharSet))
+        password.WriteString(string(upperCharSet[random]))
+    }
+
+    remainingLength := passwordLength - minSpecialChar - minNum - minUpperCase
+    for i := 0; i < remainingLength; i++ {
+        random := rand.Intn(len(allCharSet))
+        password.WriteString(string(allCharSet[random]))
+    }
+    inRune := []rune(password.String())
+	rand.Shuffle(len(inRune), func(i, j int) {
+		inRune[i], inRune[j] = inRune[j], inRune[i]
+	})
+	return string(inRune)
 }

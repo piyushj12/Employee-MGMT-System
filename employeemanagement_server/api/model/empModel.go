@@ -1,7 +1,7 @@
 package model
 
 type Login struct {
-	Username string `json:"username"`
+	Email string `json:"email"`
 	Password string `json:"password"`
 	EmpID string `json:"empid"`
 	Role string `json:"role"`
@@ -21,7 +21,6 @@ type EmpDetails struct {
 	Contact string `json:"contact"`
 	Level string `json:"level"`
 	Role string `json:"role"`
-	Username string `json:"Username"`
 }
 
 type DeleteData struct{

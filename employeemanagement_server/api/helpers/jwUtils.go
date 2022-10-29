@@ -18,7 +18,7 @@ func init() {
 }
 
 type jwtCustomClaim struct {
-	Username string `json:"username"`
+	Email string `json:"email"`
 	Password string `json:"password"`
 	Token    string `json:"token"`
 	Role    string `json:"role"`
@@ -28,7 +28,7 @@ type jwtCustomClaim struct {
 
 func GenerateToken(login model.Login, expirationTime time.Duration) (string, error) {
 	claims := jwtCustomClaim{
-		Username: login.Username,
+		Email: login.Email,
 		Password: login.Password,
 		Role:login.Role,
 		EmpID:login.EmpID,
@@ -68,10 +68,10 @@ func GetLoginFromToken(c *gin.Context) (model.Login, error) {
 		return login, errors.New("GetLoginFromToken - unable to decode token")
 	}
 	// login ID is the compulsary field, so haven't added check for nil
-	if decodedToken["username"] == nil || decodedToken["username"] == "" {
+	if decodedToken["email"] == nil || decodedToken["email"] == "" {
 		return login, errors.New("GetLoginFromToken - login id not found")
 	}
-	login.Username = decodedToken["username"].(string)
+	login.Email = decodedToken["email"].(string)
 	login.Password = decodedToken["password"].(string)
 	login.Role = decodedToken["role"].(string)
 	login.EmpID = decodedToken["empid"].(string)

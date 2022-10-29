@@ -1,19 +1,24 @@
 package services
 
 import (
+	"fmt"
 	model "EmployeeAssisgnment/api/model"
 )
 
 func ValidateUser(login model.Login) (model.Login, bool) {
-
-	if login.Username=="TusharN" && login.Password=="tusharnemade"{
-		return login,true
-	}else{
+	err,user:=ValidateDetails(login)
+	if err!=nil{
 		return model.Login{},false
 	}
+	if len(user)==0{
+		return model.Login{},false
+	}
+	
+	return user[0],true
 }
 
 func Validate(login model.Login) (error,[]model.Login) {
+	fmt.Println(login)
 	err,user:=ValidateDetails(login)
 	if err!=nil{
 		return err,[]model.Login{}
@@ -56,8 +61,8 @@ func SearchEmpService(empdetails interface{}) (error,[]model.EmpDetails) {
 	return nil,employeelist
 }
 
-func ListEmpService(empdetails interface{}) (error,[]model.EmpDetails) {
-	err,employeelist:=ListEmpFromDB(empdetails)
+func AdminallEmpList(empdetails interface{}) (error,[]model.EmpDetails) {
+	err,employeelist:=AdminallEmpListFromDB(empdetails)
 	if err != nil{
 		return err,[]model.EmpDetails{}
 	}

@@ -1,0 +1,135 @@
+.maincontent{
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.4),
+        rgba(0, 0, 0, 0.4)
+      ),url('../Images/banner.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+    min-height: 65vh;
+    background-size:cover;
+}
+.headernav {
+  float: right;
+}
+.logoimg{
+    height: 60px;
+}
+.mainheader{
+    background-color: #c6ce2f;
+    /* background-color: #DC143C; */
+}
+.list-group-item {
+  background-color: transparent !important;
+  border: none !important;
+  color: #fff !important;
+}
+.nameclass{
+    color:#c9860a
+}
+.quoteclass{
+    color:#1dc906
+}
+.headernav li a{
+    text-decoration: none;
+    color: white;
+}
+
+.anchorstyle{
+    text-decoration: none;
+    color: white;
+    font-size: large;
+}
+.anchorstyle:hover{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+   
+}
+
+.logo a{
+    text-decoration: none;
+    color: white;
+}
+.logo{
+    font-family:cursive;
+   
+}
+.logo h4{
+    float: left;
+}
+
+.thmbtn1{
+    background-color:#880E4F ;
+    color: white;
+    border: none;
+    padding: 10px;
+    min-width: 90px;
+    text-decoration: none;
+}
+.thmbtn1:hover{
+    color: white;
+    text-decoration: none;
+}
+.thmbtn2{
+    background-color:#880E4F ;
+    color: white;
+    border: none;
+    padding: 10px;
+    min-width: 90px;
+}
+.thmbtn2:hover{
+    color: white;
+    text-decoration: none;
+}
+
+.mainnavbar{
+    background-color:#FCE4EC;
+}
+
+.detailsdiv{
+    padding: 100px 30px;
+}
+.detailsimg{
+    height: 150px;
+    width: 150px;
+}
+.footer{
+    background-color: #c6ce2f;
+    color: white;
+    bottom: 0;
+}
+.homecardimg{
+    max-height: 250px;
+    min-width: 250px;
+    width: 100%;
+}
+@media screen and (max-width: 768px) {
+
+    .logo h4{
+        float: left;
+    }
+    .logo{
+        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+       
+    }
+    .footerlogomobile{
+        display: inline !important;
+    }
+    .mobilefooterlogo{
+        float: left;
+    }
+    .mobilefooterlogotext{
+        margin-top: 20px;
+    }
+    
+}
+
+
+
+.lastfooter{
+    background-color: #969c15;
+}
+
+.linkclass{
+    text-decoration: none;
+}

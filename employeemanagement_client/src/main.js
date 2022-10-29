@@ -12,7 +12,6 @@ import '@fortawesome/fontawesome-free/js/all.js'
 import VueCookies from 'vue-cookies';
 import Vuelidate from 'vuelidate'
 import moment from 'moment';
-
 Vue.use(VueCookies);
 Vue.use(Vuelidate)
 Vue.use(VueToast);

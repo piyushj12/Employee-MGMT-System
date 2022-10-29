@@ -1,7 +1,13 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-
+import Login from "../views/login.vue";
+import Admin from "../views/Admin/admin.vue";
+import Addemployee from "../views/Admin/addEmployee.vue"
+import HR from "../views/HR/hr.vue";
+import Employee from "../views/Employee/employee.vue";
+import EmployeeList from "../views/Admin/employeeList.vue"
+import HrEmployeeList from "../views/HR/ListEmployees.vue"
 Vue.use(VueRouter);
 
 const routes = [
@@ -19,6 +25,59 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
   },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login,
+  },
+  {
+    path: "/admin",
+    name: "Admin",
+    component: Admin,
+    meta: {
+      requiresAuth: true
+  }
+  },
+  {
+    path: "/admin/add/employee",
+    name: "Addemployee",
+    component: Addemployee,
+    meta: {
+      requiresAuth: true
+  }
+  },
+  {
+    path: "/hr",
+    name: "HR",
+    component: HR,
+    meta: {
+      requiresAuth: true
+  }
+  },
+  {
+    path: "/employee",
+    name: "Employee",
+    component: Employee,
+    meta: {
+      requiresAuth: true
+  }
+  },
+  {
+    path: "/admin/all/employees",
+    name: "EmployeeList",
+    component: EmployeeList,
+    meta: {
+      requiresAuth: true
+  }
+  },
+  {
+    path: "/hr/all/employees",
+    name: "HrEmployeeList",
+    component: HrEmployeeList,
+    meta: {
+      requiresAuth: true
+  }
+  },
 ];
 
 const router = new VueRouter({
@@ -27,32 +86,31 @@ const router = new VueRouter({
   routes,
 });
 
-// router.beforeEach((to, from, next) => {
-//   if(to.name=='Login'){
-//     if(localStorage.getItem('id')!=null){
-//       alert("You are already logged in")
-//       next('/users/loginhome')
-//     }else{
-//       next()
-//     }
-//   }
-//  var authenticatedUser = null;
-//  if(localStorage.getItem('token')!=null){
-//    authenticatedUser=true;
-//  }
+router.beforeEach((to, from, next) => {
+  if(to.name=='Login'){
+    if(localStorage.getItem('token')!=null){
+      alert("You are already logged in")
+    }else{
+      next()
+    }
+  }
+ var authenticatedUser = null;
+ if(localStorage.getItem('token')!=null){
+   authenticatedUser=true;
+ }
 
-//  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+ const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
-//  if (requiresAuth && ! authenticatedUser) {
-//    alert("you need to login first")
-//    localStorage.clear();
-//    next('/login')
-//    location.reload()
-//  }else{
-//     next();
-//  }
+ if (requiresAuth && ! authenticatedUser) {
+   alert("you need to login first")
+   localStorage.clear();
+   next('/login')
+   location.reload()
+ }else{
+    next();
+ }
 
-// });
+});
 
 export default router;
 

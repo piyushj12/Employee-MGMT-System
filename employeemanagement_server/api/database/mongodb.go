@@ -20,3 +20,7 @@ func InitDB() {
 func Collection() *mgo.Collection {
 	return db.C("EmployeeData")
 }
+
+func MasterDB() *mgo.Collection {
+	return db.C("MasterDB")
+}

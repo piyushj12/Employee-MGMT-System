@@ -35,6 +35,7 @@ func Login() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		login := model.Login{}
 		c.Bind(&login)
+		
 		err, user := service.Validate(login)
 		if err!=nil{
 			c.JSON(http.StatusNetworkAuthenticationRequired, gin.H{"Error": err})
@@ -45,10 +46,9 @@ func Login() gin.HandlerFunc {
 					c.JSON(http.StatusNetworkAuthenticationRequired, gin.H{"Error": err})
 				}
 				c.Header("Authorization", token)
-	
 				c.JSON(http.StatusOK, gin.H{"Authorization": token})
 			}else{
-				c.JSON(http.StatusNetworkAuthenticationRequired, gin.H{"Error": "Please Enter valid username and password"})
+				c.JSON(http.StatusOK, gin.H{"Error": "Please Enter valid username and password"})
 			}
 		}
 		
@@ -101,11 +101,11 @@ func SearchEmp() gin.HandlerFunc {
 }
 
 //List Employee
-func ListEmp() gin.HandlerFunc {
+func AdminEmpList() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var ListObj interface{}
 		c.Bind(&ListObj)
-		err,employeelist:=service.ListEmpService(ListObj)
+		err,employeelist:=service.AdminallEmpList(ListObj)
 		if err!=nil{
 			c.JSON(http.StatusOK, gin.H{"message":err.Error()})
 		}else{

@@ -8,21 +8,22 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "core-js": "^3.6.5",
-    "vue": "^2.6.11",
-    "vue-router": "^3.2.0",
-    "vuex": "^3.4.0",
     "axios": "^0.25.0",
     "bootstrap": "^5.1.3",
     "bootstrap-vue": "^2.21.2",
     "bootstrap-vue-datatable": "^1.0.7",
+    "core-js": "^3.6.5",
     "mdbvue": "^6.7.3",
     "moment": "^2.29.3",
+    "sass": "^1.55.0",
+    "vue": "^2.6.11",
     "vue-cookies": "^1.8.0",
     "vue-html2pdf": "^1.8.0",
     "vue-jwt-decode": "^0.1.0",
+    "vue-router": "^3.2.0",
     "vue-toast-notification": "^0.6.2",
     "vuelidate": "^0.7.7",
+    "vuex": "^3.4.0",
     "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {
@@ -37,7 +38,9 @@
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^6.2.2",
+    "node-sass": "^7.0.3",
     "prettier": "^2.2.1",
+    "sass-loader": "^10.1.1",
     "vue-template-compiler": "^2.6.11"
   }
 }

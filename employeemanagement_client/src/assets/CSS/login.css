@@ -1,0 +1,30 @@
+.registerpart {
+    background-image:linear-gradient(
+          rgba(0, 0, 0, 0.4),
+          rgba(0, 0, 0, 0.4)
+        ), url("../Images/backdropsignin.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .thmbtn1 {
+    border-radius: 20px;
+    width: 150px;
+  }
+  .innercontent {
+    width: 60%;
+  }
+  .form-floating > input{
+      background-color: rgba(116, 68, 68, 0.075);
+  }
+
+  .btnsignup{
+    text-decoration: none;
+    background-color: #880E4F;
+    border-radius: 20px;
+    width: 150px;
+    color: white;
+    padding: 10px;
+    margin-top: 20px;
+  }
+  
