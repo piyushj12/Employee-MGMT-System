@@ -12,6 +12,10 @@
 				<span class="material-icons"><i class="fa fa-home" aria-hidden="true"></i></span>
 				<span class="text">Home</span>
 			</router-link>
+			<router-link to="/approvals" class="button">
+				<span class="material-icons"><i class="fa-solid fa-bell"></i></span>
+				<span class="text">Pending Approval</span>
+			</router-link>
 			<router-link to="/admin/add/employee" class="button" v-if="role=='admin' || role=='hr'">
 				<span class="material-icons"><i class="fa-solid fa-user-plus"></i></span>
 				<span class="text">Add Employee</span>
@@ -24,6 +28,14 @@
             <router-link to="/hr/all/employees" class="button" v-if="role=='hr'">
 				<span class="material-icons"><i class="fas fa-users"></i></span>
 				<span class="text">Employee List</span>
+			</router-link>
+			 <router-link to="/employee/profile" class="button" v-if="role=='hr' || role=='employee'">
+				<span class="material-icons"><i class="fa-solid fa-user"></i></span>
+				<span class="text">Profile</span>
+			</router-link>
+			 <router-link to="/apply/leaves" class="button" v-if="role=='hr' || role=='employee'">
+				<span class="material-icons"><i class="fas fa-gifts"></i></span>
+				<span class="text">Apply Leaves</span>
 			</router-link>
 		</div>
 

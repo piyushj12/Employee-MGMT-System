@@ -26,7 +26,7 @@ func InitMiddleware(g *gin.Engine) {
 // Need to check JWT token here
 func RestrictedRequestMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		fmt.Println("HEADER  ",c.Request.Header)
+		//fmt.Println("HEADER  ",c.Request.Header)
 		token := c.GetHeader("Authorization")
 		login, err := helpers.GetLoginFromToken(c)
 		if err != nil {
@@ -44,7 +44,7 @@ func RestrictedRequestMiddleware() gin.HandlerFunc {
 			c.AbortWithStatusJSON(401, gin.H{"error": "Failed to validate user"})
 		}
 		c.Next()
-		fmt.Println("RestrictedRequestMiddleware called")
+		//fmt.Println("RestrictedRequestMiddleware called")
 	}
 
 }

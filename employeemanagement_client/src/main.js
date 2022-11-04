@@ -12,6 +12,8 @@ import '@fortawesome/fontawesome-free/js/all.js'
 import VueCookies from 'vue-cookies';
 import Vuelidate from 'vuelidate'
 import moment from 'moment';
+
+
 Vue.use(VueCookies);
 Vue.use(Vuelidate)
 Vue.use(VueToast);
@@ -25,7 +27,21 @@ Vue.filter('formatDate', function(value) {
       //return moment(String(value)).format('MM/DD/YYYY hh:mm A')
   }
 });
-
+Vue.mixin({
+  methods: {
+    getTitleCase: str => {
+      const titleCase = str
+      .toLowerCase()
+      .split(' ')
+      .map(word => {
+        return word.charAt(0).toUpperCase() + word.slice(1);
+      })
+      .join(' ');
+  
+    return titleCase;
+    }
+  }
+})
 new Vue({
   router,
   store,

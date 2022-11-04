@@ -8,6 +8,9 @@ import HR from "../views/HR/hr.vue";
 import Employee from "../views/Employee/employee.vue";
 import EmployeeList from "../views/Admin/employeeList.vue"
 import HrEmployeeList from "../views/HR/ListEmployees.vue"
+import EmployeeProfile from '../views/Employee/profile.vue'
+import Approvals from '../views/Employee/approvals.vue'
+import ApplyLeaves from '../views/ApplyLeaves.vue'
 Vue.use(VueRouter);
 
 const routes = [
@@ -74,6 +77,30 @@ const routes = [
     path: "/hr/all/employees",
     name: "HrEmployeeList",
     component: HrEmployeeList,
+    meta: {
+      requiresAuth: true
+  }
+  },
+  {
+    path: "/employee/profile",
+    name: "EmployeeProfile",
+    component: EmployeeProfile,
+    meta: {
+      requiresAuth: true
+  }
+  },
+  {
+    path: "/apply/leaves",
+    name: "ApplyLeaves",
+    component: ApplyLeaves,
+    meta: {
+      requiresAuth: true
+  }
+  },
+  {
+    path: "/approvals",
+    name: "Approvals",
+    component: Approvals,
     meta: {
       requiresAuth: true
   }

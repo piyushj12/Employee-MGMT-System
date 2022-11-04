@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fmt"
 	"time"
 	"net/http"
 	"github.com/gin-gonic/gin"
@@ -41,6 +42,7 @@ func Login() gin.HandlerFunc {
 			c.JSON(http.StatusNetworkAuthenticationRequired, gin.H{"Error": err})
 		}else{
 			if len(user)>0{
+				fmt.Println(user[0])
 				token, err := helper.GenerateToken(user[0], 24*time.Hour)
 				if err != nil {
 					c.JSON(http.StatusNetworkAuthenticationRequired, gin.H{"Error": err})
@@ -73,7 +75,7 @@ func AddEmp() gin.HandlerFunc {
 // Update Emp Update Handler
 func UpdateEmp() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		var UpdateObj interface{}
+		var UpdateObj model.EmpDetails
 		c.Bind(&UpdateObj)
 		err:=service.UpdateEmpService(UpdateObj)
 		if err!=nil{
@@ -85,6 +87,19 @@ func UpdateEmp() gin.HandlerFunc {
 	}
 }
 
+
+//Get manager list
+func GetManagers() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		err,list:=service.GetManagers()
+		if err!=nil{
+			c.JSON(http.StatusOK, gin.H{"message":err.Error()})
+		}else{
+			c.JSON(http.StatusOK, list)
+		}
+		
+	}
+}
 //Search Emp Handler
 func SearchEmp() gin.HandlerFunc {
 	return func(c *gin.Context) {
@@ -115,6 +130,33 @@ func AdminEmpList() gin.HandlerFunc {
 	}
 }
 
+func GetLeaves() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		var ListObj model.Email
+		c.Bind(&ListObj)
+		err,employeelist:=service.GetLeaves(ListObj)
+		if err!=nil{
+			c.JSON(http.StatusOK, gin.H{"message":err.Error()})
+		}else{
+			c.JSON(http.StatusOK, employeelist)
+		}
+		
+	}
+}
+
+func GetAppliedLeaves() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		var ListObj model.Email
+		c.Bind(&ListObj)
+		err,list:=service.GetAppliedLeaves(ListObj)
+		if err!=nil{
+			c.JSON(http.StatusOK, gin.H{"message":err.Error()})
+		}else{
+			c.JSON(http.StatusOK, list)
+		}
+		
+	}
+}
 //Delete Employee
 func DeleteEmp() gin.HandlerFunc {
 	return func(c *gin.Context) {
@@ -153,6 +195,50 @@ func ViewDeletedEmp() gin.HandlerFunc {
 			c.JSON(http.StatusOK, gin.H{"message":err.Error()})
 		}else{
 			c.JSON(http.StatusOK, employeelist)
+		}
+		
+	}
+}
+
+//get profilr handler
+func GetProfile() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		login := model.Login{}
+		c.Bind(&login)
+		err,profile:=service.GetProfileService(login)
+		if err!=nil{
+			c.JSON(http.StatusOK, gin.H{"message":err.Error()})
+		}else{
+			c.JSON(http.StatusOK, profile)
+		}
+		
+	}
+}
+
+//apply leaves
+func ApplyLeaves() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		leaves := model.Leaves{}
+		c.Bind(&leaves)
+		err,ack:=service.ApplyLeavesService(leaves)
+		if err!=nil{
+			c.JSON(http.StatusOK, gin.H{"message":err.Error()})
+		}else{
+			c.JSON(http.StatusOK, ack)
+		}
+		
+	}
+}
+
+func UpdateLeaveStatus() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		var UpdateObj model.Leaves
+		c.Bind(&UpdateObj)
+		err:=service.UpdateLeavesService(UpdateObj)
+		if err!=nil{
+			c.JSON(http.StatusOK, gin.H{"message":err.Error()})
+		}else{
+			c.JSON(http.StatusOK, gin.H{"message":"Leave approved sucessfully"})
 		}
 		
 	}

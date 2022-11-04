@@ -140,6 +140,7 @@ export default {
             position: "top",
           });
           }else{
+            //console.log(VueJwtDecode.decode(data.Authorization))
               localStorage.setItem('token',data.Authorization)
               localStorage.setItem('role',VueJwtDecode.decode(data.Authorization).role)
               localStorage.setItem('email',VueJwtDecode.decode(data.Authorization).email)

@@ -37,4 +37,12 @@ export default {
       return error.response.data.message;
   }
 },
+async getManagerService() {
+  try{
+    let res = await apiClient.get("/r/get/managers")
+    return res.data;
+  }catch(error){
+    return error.response.data;
+  }
+}
 };

@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row mt-3">
         <div class="col-sm-12">
-            <h3 class="text-center"> Employees List Admin</h3>
+            <h3 class="text-center"> Employees List</h3>
         </div>
     </div>
     <div class="row mt-3">
