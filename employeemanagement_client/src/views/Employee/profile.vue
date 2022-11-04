@@ -1,6 +1,6 @@
 <template>
     <div class="container-fluid">
-         <b-modal ref="modal-editprofile" title="Edit Profile">
+    <b-modal ref="modal-editprofile" title="Edit Profile">
       <div class="p-3 d-flex flex-column justify-content-center">
        <div class="form-group">
         <table class="table table-bordered table-striped">

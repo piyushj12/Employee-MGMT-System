@@ -48,16 +48,9 @@ type EmpDetails struct {
 	Manageremail string `json:"manageremail"`
 	Holidays int64 `json:"holidays"`
 	Remholidays int64 `json:"remholidays"`
+	Gender string `json:"gender"`
 	Role string `json:"role"`
 }
 
-type DeleteData struct{
-	EmpID string `json:"empid"`
-	PermanentlyDelete bool `json:"permanentlyDelete"`
-}
-
-type RestoreData struct{
-	EmpID string `json:"empid"`
-}
 // Created global list which will be available throughout the application
 var empList []EmpDetails

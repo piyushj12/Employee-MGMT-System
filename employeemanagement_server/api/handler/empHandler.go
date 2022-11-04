@@ -75,7 +75,7 @@ func AddEmp() gin.HandlerFunc {
 // Update Emp Update Handler
 func UpdateEmp() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		var UpdateObj model.EmpDetails
+		var UpdateObj interface {}
 		c.Bind(&UpdateObj)
 		err:=service.UpdateEmpService(UpdateObj)
 		if err!=nil{
@@ -146,7 +146,7 @@ func GetLeaves() gin.HandlerFunc {
 
 func GetAppliedLeaves() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		var ListObj model.Email
+		var ListObj interface {}
 		c.Bind(&ListObj)
 		err,list:=service.GetAppliedLeaves(ListObj)
 		if err!=nil{
@@ -158,11 +158,11 @@ func GetAppliedLeaves() gin.HandlerFunc {
 	}
 }
 //Delete Employee
-func DeleteEmp() gin.HandlerFunc {
+func DeleteEmpPermanently() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		requestBody:=service.NewDeleteData()
-		c.Bind(&requestBody)
-		err,msg:=service.DeleteEmpService(requestBody)
+		requestBody:=make(map[string]string) 
+		requestBody["empid"]=c.Param("id")
+		err,msg:=service.DeleteEmpPermanentlyService(requestBody)
 		if err!=nil{
 			c.JSON(http.StatusOK, gin.H{"message":err.Error()})
 		}else{
@@ -172,35 +172,7 @@ func DeleteEmp() gin.HandlerFunc {
 	}
 }
 
-//Restore Employee
-func RestoreEmp() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		requestBody:=service.NewRestoreData()
-		c.Bind(&requestBody)
-		err,msg:=service.RestoreEmpService(requestBody)
-		if err!=nil{
-			c.JSON(http.StatusOK, gin.H{"message":err.Error()})
-		}else{
-			c.JSON(http.StatusOK, gin.H{"message":msg})
-		}
-		
-	}
-}
-
-//VIEW DELETED EMPLOYEE
-func ViewDeletedEmp() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		err,employeelist:=service.ViewDeletedEmpService()
-		if err!=nil{
-			c.JSON(http.StatusOK, gin.H{"message":err.Error()})
-		}else{
-			c.JSON(http.StatusOK, employeelist)
-		}
-		
-	}
-}
-
-//get profilr handler
+//get profile handler
 func GetProfile() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		login := model.Login{}

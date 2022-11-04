@@ -12,7 +12,13 @@
                 <input type="text" placeholder="Enter employee's first name" v-model="emp.firstname" class="form-control"/>
                 <label>Last Name:</label>
                 <input type="text" placeholder="Enter employee's last name" v-model="emp.lastname" class="form-control"/>
-
+                <label>Gender:</label>
+                <select v-model="emp.gender" class="form-control">
+                     <option disabled value="">Please Select Role</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
                  <label>Department Name:</label>
                      <select  v-model="emp.department" class="form-control">
                        <option disabled value="">Please Select Department</option>
@@ -90,7 +96,8 @@ export default {
                 department:"",
                 manager:"",
                 manageremail:"",
-                holidays:""
+                holidays:"",
+                gender:""
 
             },
             managers:[]
@@ -109,7 +116,6 @@ export default {
                 this.emp.manageremail=event.target.value
         },
         async addEmployee(){
-            console.log(this.emp)
              await UserServices.addEmployeeService(this.emp).then((data) => {
            this.$toast.open({
             message:data.message,

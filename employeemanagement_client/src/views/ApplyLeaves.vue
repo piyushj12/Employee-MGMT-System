@@ -24,30 +24,7 @@
             </div>
             <div class="col-sm-6">
                 <h3 class="text-center">Applied Leaves</h3>
-                <div class="card">
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>Applied on</th>
-                                <th>Manager</th>
-                                <th>From</th>
-                                <th>To</th>
-                                <th>No. of days</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="(leaves,index) in appliedleaves" :key="index">
-                                <td>{{new Date(leaves.applieddate).toLocaleString()}}</td>
-                                <td>{{leaves.manageremail}}</td>
-                                <td>{{new Date(leaves.fromdate).toLocaleDateString()}}</td>
-                                <td>{{new Date(leaves.todate).toLocaleDateString()}}</td>
-                                <td>{{leaves.numdays}}</td>
-                                <td>{{leaves.status}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <AppliedLeaves :email="mail" status="applied" field="email" />
             </div>
         </div>
     </div>
@@ -56,19 +33,21 @@
 import Services from '../services/EmployeeServices.js'
 import DatePicker from 'vue2-datepicker';
 import 'vue2-datepicker/index.css';
-
+import AppliedLeaves from '@/components/appliedLeaves.vue';
 export default {
-     components: { DatePicker },
+     components: { DatePicker,AppliedLeaves},
     data(){
         return{
             leaves:{},
             dates:[],
             days:"",
             appliedleaves:[],
-            comment:""
+            comment:"",
+            mail:""
         }
     },
     created(){
+        this.mail=localStorage.getItem('email')
         this.getEmployeeLeaves()
         this.getEmployeeAppliedLeaves()
     },
@@ -80,14 +59,19 @@ export default {
         async getEmployeeLeaves(){
             await Services.getEmployeeLeaves({"email":localStorage.getItem('email')})
             .then((data) => {
-               
+              
                  this.leaves=data[0]
             })
         },
          async getEmployeeAppliedLeaves(){
             await Services.getEmployeeAppliedLeaves({"email":localStorage.getItem('email'),"status":"applied"})
             .then((data) => {
-                this.appliedleaves=data
+                 if(data!=null){
+                    this.appliedleaves=data
+                 }else{
+                    this.appliedleaves=[]
+                 }
+                
             })
         },
         async submitforapproval(){

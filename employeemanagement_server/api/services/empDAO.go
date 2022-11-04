@@ -38,8 +38,7 @@ func SaveEmployeeToDB(empDetails model.EmpDetails) error {
 	}else{
 		pad=empDetails.Lastname[:2]+empDetails.Department[:len(empDetails.Department)]
 	}
-	fmt.Println(pad)
-	empDetails.EmpID = empDetails.Firstname  + pad + strconv.Itoa(ranNum)
+	empDetails.EmpID = strings.ReplaceAll(empDetails.Firstname  + pad + strconv.Itoa(ranNum)," ","") 
 	empDetails.Empstatus="Pending"
 	empDetails.Password=generatePassword()
 	empDetails.Empstatus="active"
@@ -57,12 +56,17 @@ func GetProfileFromDB(login model.Login) (error,[]model.EmpDetails){
 	if err := database.Collection().Find(bson.M{"email":login.Email}).All(&user); err != nil {
 		return err,[]model.EmpDetails{}
 	}
-	fmt.Println(user)
 	return nil,user
 }
 //update
-func UpdateEmpFromDB(empdetails model.EmpDetails) error {
-	err:=database.Collection().Update(bson.M{"email":empdetails.Email}, bson.M{"$set":bson.M{"contact":empdetails.Contact,"address":empdetails.Address,"password":empdetails.Password}})
+func UpdateEmpFromDB(empdetails interface {}) error {
+	origin:= empdetails.(map[string]interface {})
+	for key, value := range origin {
+		if value==""|| value==0 || value==nil{
+			delete(origin,key)
+		}
+    }
+	err:=database.Collection().Update(bson.M{"email":origin["email"]}, bson.M{"$set":origin})
 			if err != nil{
 				return err
 			}
@@ -102,15 +106,17 @@ func GetLeavesFromDB(empdetails model.Email) (error,[]model.Leaves){
 	}
 	return nil,list
 }
-func GetAppliedLeavesFromDB(empdetails model.Email) (error,[]model.Leaves){
+func GetAppliedLeavesFromDB(empdetails interface {}) (error,[]model.Leaves){
 	var list []model.Leaves
-	if empdetails.Status=="applied"{
-		if err := database.Leaves().Find(bson.M{"email":empdetails.Email}).All(&list); err != nil {
+	origin:= empdetails.(map[string]interface {})
+	field := fmt.Sprintf("%v",origin["field"] )
+	if origin["status"]=="applied"{
+		if err := database.Leaves().Find(bson.M{field:origin["email"]}).All(&list); err != nil {
 			return err,[]model.Leaves{}
 		}
 	}else{
-		query := []bson.M{ // NOTE: slice of bson.M here
-			bson.M{"$match":bson.M{"manageremail":empdetails.Email,"status":empdetails.Status}},
+		query := []bson.M{ 
+			bson.M{"$match":bson.M{field:origin["email"],"status":origin["status"]}},
 			bson.M{"$lookup": bson.M{"from": "EmployeeData","localField":"email","foreignField":"email","pipeline":[]bson.M{bson.M{"$project":bson.M{"firstname":1,"lastname":1,"remholidays":1}}},"as":"details"}},
 			bson.M{"$unwind":bson.M{"path": "$details"}},
 		  }
@@ -155,58 +161,22 @@ func SearchEmpFromDB(empdetails interface{}) (error,[]model.EmpDetails){
 
 func AdminallEmpListFromDB(empdetails interface{}) (error,[]model.EmpDetails){
 	var employeelist []model.EmpDetails
-	// origin:= empdetails.(map[string]interface {})
+	origin:= empdetails.(map[string]interface {})
 	
-	// for key,value:= range origin{
-	// 	origin[key]=bson.M{"$regex":value,"$options":"i"}
-	// }
-	// origin["empstatus"]="active"
-	emp:=bson.M{"empstatus":"active"}
-	if err := database.Collection().Find(emp).All(&employeelist); err != nil {
+	if err := database.Collection().Find(origin).All(&employeelist); err != nil {
 		return err,[]model.EmpDetails{}
 	}
 	return nil,employeelist
 }
 
-func DeleteEmpFromDB(deletedetails model.DeleteData) (error,string){
-     if deletedetails.PermanentlyDelete ==true{
-		err:=database.Collection().Remove(bson.M{"empid": deletedetails.EmpID})
+func DeleteEmpFromDB(deletedetails map[string]string) (error,string){
+		
+		err:=database.Collection().Remove(deletedetails)
 		if err!=nil{
 			return err,""
 		}
 		return nil,"Permanently deleted employee"
-	 }else{
-		query:=bson.M{"empid":deletedetails.EmpID}
-		UpdateQuery:=bson.M{"$set":bson.M{"empstatus":"Deactivated"}}
-		err:=database.Collection().Update(query, UpdateQuery)
-			if err != nil{
-				return err,""
-			}
-			return nil,"Employee Status changed to deactivated"
-	 }
-	
-	
 }
-
-func RestoreEmpFromDB(restoredetails model.RestoreData) (error,string){
-	
-	   query:=bson.M{"empid":restoredetails.EmpID}
-	   UpdateQuery:=bson.M{"$set":bson.M{"empstatus":"Activated"}}
-	   err:=database.Collection().Update(query, UpdateQuery)
-		   if err != nil{
-			   return err,""
-		   }
-		   return nil,"Employee Status changed to Activated"
-}
-   
-func ViewDeletedEmpFromDB() (error,[]model.EmpDetails){
-	var employeelist []model.EmpDetails
-	if err := database.Collection().Find(bson.M{"empstatus":"Deactivated"}).All(&employeelist); err != nil {
-		return err,[]model.EmpDetails{}
-	}
-	return nil,employeelist
-}
-
 
 func generatePassword() string {
 

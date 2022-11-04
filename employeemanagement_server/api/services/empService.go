@@ -38,13 +38,6 @@ func NewEmp() model.EmpDetails {
 	return model.EmpDetails{}
 }
 
-func NewDeleteData() model.DeleteData {
-	return model.DeleteData{}
-}
-
-func NewRestoreData() model.RestoreData {
-	return model.RestoreData{}
-}
 func AddEmpService(emp model.EmpDetails) error {
 	// Mongo DB
 	err:=SaveEmployeeToDB(emp)
@@ -54,7 +47,7 @@ func AddEmpService(emp model.EmpDetails) error {
 	return nil
 }
 
-func UpdateEmpService(empdetails model.EmpDetails) error {
+func UpdateEmpService(empdetails interface {}) error {
 	err:=UpdateEmpFromDB(empdetails)
 	if err != nil{
 		return err
@@ -99,7 +92,7 @@ func GetLeaves(empdetails model.Email) (error,[]model.Leaves) {
 	}
 	return nil,list
 }
-func GetAppliedLeaves(email model.Email) (error,[]model.Leaves) {
+func GetAppliedLeaves(email interface {}) (error,[]model.Leaves) {
 	err,list:=GetAppliedLeavesFromDB(email)
 	if err != nil{
 		return err,[]model.Leaves{}
@@ -113,26 +106,10 @@ func ApplyLeavesService(leaves model.Leaves)(error, bool){
 	}
 	return nil,msg
 }
-func DeleteEmpService(deletedetails model.DeleteData) (error,string) {
+func DeleteEmpPermanentlyService(deletedetails map[string]string) (error,string) {
 	err,msg:=DeleteEmpFromDB(deletedetails)
 	if err != nil{
 		return err,""
 	}
 	return nil,msg
-}
-
-func RestoreEmpService(deletedetails model.RestoreData) (error,string) {
-	err,msg:=RestoreEmpFromDB(deletedetails)
-	if err != nil{
-		return err,""
-	}
-	return nil,msg
-}
-
-func ViewDeletedEmpService() (error,[]model.EmpDetails) {
-	err,employeelist:=ViewDeletedEmpFromDB()
-	if err != nil{
-		return err,[]model.EmpDetails{}
-	}
-	return nil,employeelist
 }

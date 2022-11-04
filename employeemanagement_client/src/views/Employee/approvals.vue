@@ -1,5 +1,23 @@
 <template>
     <div class="container-fluid">
+        <b-modal ref="modal-view" size="lg" title="Previous Leave Records">
+      <div class="p-3 d-flex flex-column justify-content-center">
+        <div class="form-group">
+            <div class="text-end">
+                <button class="btn btn-success btn-md" @click="setStatus('approved')">Approved Leaves</button>&nbsp;
+                <button class="btn btn-danger btn-md"  @click="setStatus('cancelled')">Cancelled Leaves</button>
+            </div>
+            
+            <AppliedLeaves :email="email" :status="status" field="email" :key="status" class="mt-3"/>
+
+        </div>
+      </div>
+      <template #modal-footer="{ cancel }">
+        <b-button size="md" variant="secondary" @click="cancel()">
+          Cancel
+        </b-button>
+      </template>
+    </b-modal>
         <div class="row mt-3">
             <div class="col-sm-12">
                 <h3 class="text-center">
@@ -9,7 +27,7 @@
         </div>
         <div class="row m-3">
             <div class="col-sm-12">
-                 <div class="card">
+                 <div class="card" v-if="appliedleaves.length>0">
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -36,23 +54,32 @@
                                 <td>{{leaves.status}}</td>
                                 <td class="text-center">
                                     <button class="btn btn-primary btn-sm" @click="updateStatus(leaves.lid,leaves.email,'approved',leaves.numdays,leaves.holidays)">Approve</button>&nbsp;
-                                    <button class="btn btn-secondary btn-sm">View Previous</button>&nbsp;
+                                    <button class="btn btn-secondary btn-sm" @click="viewRecordsModal(leaves.email,'approved')">View Previous</button>&nbsp;
                                     <button class="btn btn-danger btn-sm" @click="updateStatus(leaves.lid,leaves.email,'cancelled',leaves.numdays,leaves.holidays)">Cancel</button>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+                <NoData v-else/>
             </div>
         </div>
     </div>
 </template>
 <script>
 import Services from '../../services/EmployeeServices.js'
+import NoData from '@/components/noDataTemplate.vue';
+import AppliedLeaves from '@/components/appliedLeaves.vue';
 export default {
+    components: {
+  NoData,
+  AppliedLeaves
+},
     data(){
         return{
-            appliedleaves:[]
+            appliedleaves:[],
+            email:"",
+            status:"",
         }
     },
     created(){
@@ -60,11 +87,18 @@ export default {
     },
     methods:{
         async getEmployeeAppliedLeaves(){
-            await Services.getEmployeeAppliedLeaves({"email":localStorage.getItem('email'),"status":"pending"})
+            await Services.getEmployeeAppliedLeaves({"email":localStorage.getItem('email'),"status":"pending","field":"manageremail"})
             .then((data) => {
-                console.log(data)
-                this.appliedleaves=data
+               if(data!=null){
+                     this.appliedleaves=data
+               }else{
+                     this.appliedleaves=[]
+               }
+               
             })
+        },
+        setStatus(status){
+            this.status=status
         },
         async updateStatus(id,email,status,numdays,holidays){
             await Services.updateLeaves({"lid":id,"email":email,"status":status,"numdays":numdays,"holidays":holidays})
@@ -78,6 +112,12 @@ export default {
                 
             })
         },
+        viewRecordsModal(email,status){
+            this.email=email
+            this.status=status
+            this.$refs["modal-view"].show();
+
+        }
     }
 }
 </script>
