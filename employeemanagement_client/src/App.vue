@@ -41,6 +41,7 @@ export default{
 </script>
 
 <style lang="scss">
+
 :root {
 	--primary: #4ade80;
 	--primary-alt: #22c55e;
@@ -76,24 +77,13 @@ button {
 		}
 	}
 }
-.sidenavlogin{
-  display: grid;
-  grid-template-columns:repeat(2, 1fr);
-  grid-auto-columns: 100px 800px;
-}
-.sidenav{
-   display: grid;
-  grid-template-columns: 1fr;
-}
+
 
 .wrapper{
-    width: 100vw;
+    
 }
 .first{
   //  width: 300px;
   float: left;
-}
-.second{
-  margin-left: 305px;
 }
 </style>

@@ -68,4 +68,60 @@ export default {
       return error.response.data;
     }
   },
+  async SearchEmployee(payload) {
+    try {
+      let res = await apiClient.post("/r/search",payload);
+      return res.data;
+    } catch (error) {
+      return error.response.data;
+    }
+  },
+  async DashboardData(payload) {
+    try {
+      let res = await apiClient.post("/r/dashboard/data",payload);
+      return res.data;
+    } catch (error) {
+      return error.response.data;
+    }
+  },
+  async CaptureClockIn(payload) {
+    try {
+      let res = await apiClient.post("/r/capture/clockin",payload);
+      return res.data;
+    } catch (error) {
+      return error.response.data;
+    }
+  },
+  async CaptureClockOut(payload) {
+    try {
+      let res = await apiClient.post("/r/capture/clockout",payload);
+      return res.data;
+    } catch (error) {
+      return error.response.data;
+    }
+  },
+  async isClockedIn(payload) {
+    try {
+      let res = await apiClient.post("/r/check/clockin/exists",payload);
+      return res.data;
+    } catch (error) {
+      return error.response.data;
+    }
+  },
+  async isClockedOut(payload) {
+    try {
+      let res = await apiClient.post("/r/check/clockout/exists",payload);
+      return res.data;
+    } catch (error) {
+      return error.response.data;
+    }
+  },
+  async viewAttendanceData(payload) {
+    try {
+      let res = await apiClient.post("/r/get/attendance",payload);
+      return res.data;
+    } catch (error) {
+      return error.response.data;
+    }
+  },
 };

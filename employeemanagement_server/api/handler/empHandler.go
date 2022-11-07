@@ -129,7 +129,22 @@ func AdminEmpList() gin.HandlerFunc {
 		
 	}
 }
+//get dashboarddata
+func DashBoardDataHandler() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		var email interface{}
+		c.Bind(&email)
+		err,details:=service.DashBoardDataService(email)
+		if err!=nil{
+			c.JSON(http.StatusOK, gin.H{"message":err.Error()})
+		}else{
+			c.JSON(http.StatusOK, details)
+		}
+		
+	}
+}
 
+//Get leaves
 func GetLeaves() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var ListObj model.Email
@@ -211,6 +226,81 @@ func UpdateLeaveStatus() gin.HandlerFunc {
 			c.JSON(http.StatusOK, gin.H{"message":err.Error()})
 		}else{
 			c.JSON(http.StatusOK, gin.H{"message":"Leave approved sucessfully"})
+		}
+		
+	}
+}
+
+//capture clock in time
+func CaptureClockinTime() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		var obj interface{}
+		c.Bind(&obj)
+		err,status:=service.CaptureClockinTimeService(obj)
+		if err!=nil{
+			c.JSON(http.StatusOK, gin.H{"message":err.Error()})
+		}else{
+			c.JSON(http.StatusOK, status)
+		}
+		
+	}
+}
+
+//capture clock Out time
+func CaptureClockoutTime() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		var obj interface{}
+		c.Bind(&obj)
+		err,status:=service.CaptureClockoutTimeService(obj)
+		if err!=nil{
+			c.JSON(http.StatusOK, gin.H{"message":err.Error()})
+		}else{
+			c.JSON(http.StatusOK, status)
+		}
+		
+	}
+}
+
+//check clock in
+func Isclockedin() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		var obj model.Attendance
+		c.Bind(&obj)
+		err,status:=service.IsclockedinService(obj)
+		if err!=nil{
+			c.JSON(http.StatusOK, gin.H{"message":err.Error()})
+		}else{
+			c.JSON(http.StatusOK, status)
+		}
+		
+	}
+}
+
+//check clock out
+func Isclockedout() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		var obj model.Attendance
+		c.Bind(&obj)
+		err,status:=service.IsclockedoutService(obj)
+		if err!=nil{
+			c.JSON(http.StatusOK, gin.H{"message":err.Error()})
+		}else{
+			c.JSON(http.StatusOK, status)
+		}
+		
+	}
+}
+
+//Get attendance of emplyoee
+func GetAttendance() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		var obj interface{}
+		c.Bind(&obj)
+		err,status:=service.GetAttendanceService(obj)
+		if err!=nil{
+			c.JSON(http.StatusOK, gin.H{"message":err.Error()})
+		}else{
+			c.JSON(http.StatusOK, status)
 		}
 		
 	}

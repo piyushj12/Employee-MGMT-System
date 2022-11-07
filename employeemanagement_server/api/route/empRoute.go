@@ -20,7 +20,12 @@ func Init(r,o *gin.RouterGroup) {
 	r.POST("/get/applied/leaves", handler.GetAppliedLeaves())
 	r.PUT("/update/leave/status", handler.UpdateLeaveStatus())
 	r.DELETE("/delete/permanently/:id", handler.DeleteEmpPermanently())
-
 	r.POST("/search", handler.SearchEmp())
+	r.POST("/dashboard/data",handler.DashBoardDataHandler())
+	r.POST("/capture/clockin",handler.CaptureClockinTime())
+	r.POST("/capture/clockout",handler.CaptureClockoutTime())
+	r.POST("/check/clockin/exists",handler.Isclockedin())
+	r.POST("/check/clockout/exists",handler.Isclockedout())
+	r.POST("/get/attendance",handler.GetAttendance())
 	
 }

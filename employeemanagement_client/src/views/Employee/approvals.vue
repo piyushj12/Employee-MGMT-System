@@ -36,7 +36,7 @@
                                  <th>Employee email</th>
                                 <th>From</th>
                                 <th>To</th>
-                                <th>Reamining Holidays</th>
+                                <th>Rem. Holidays</th>
                                 <th>No. of days</th>
                                 <th>Status</th>                     
                                 <th>Actions</th>
@@ -44,7 +44,7 @@
                         </thead>
                         <tbody>
                             <tr v-for="(leaves,index) in appliedleaves" :key="index">
-                                <td>{{new Date(leaves.applieddate).toLocaleString()}}</td>
+                                <td>{{new Date(leaves.applieddate).toLocaleDateString()}}</td>
                                 <td>{{leaves.details.firstname +" "+ leaves.details.lastname}}</td>
                                 <td>{{leaves.email}}</td>
                                 <td>{{new Date(leaves.fromdate).toLocaleDateString()}}</td>
@@ -52,9 +52,9 @@
                                 <td>{{leaves.details.remholidays}}</td>
                                 <td>{{leaves.numdays}}</td>
                                 <td>{{leaves.status}}</td>
-                                <td class="text-center">
+                                <td class="" style="min-width:240px">
                                     <button class="btn btn-primary btn-sm" @click="updateStatus(leaves.lid,leaves.email,'approved',leaves.numdays,leaves.holidays)">Approve</button>&nbsp;
-                                    <button class="btn btn-secondary btn-sm" @click="viewRecordsModal(leaves.email,'approved')">View Previous</button>&nbsp;
+                                    <button class="btn btn-secondary btn-sm" @click="viewRecordsModal(leaves.email,'approved')">Previous</button>&nbsp;
                                     <button class="btn btn-danger btn-sm" @click="updateStatus(leaves.lid,leaves.email,'cancelled',leaves.numdays,leaves.holidays)">Cancel</button>
                                 </td>
                             </tr>

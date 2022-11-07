@@ -142,18 +142,10 @@ func SearchEmpFromDB(empdetails interface{}) (error,[]model.EmpDetails){
 	origin:= empdetails.(map[string]interface {})
 	query:= make([]map[string]interface{},0)
 	for key,value:= range origin{
-		if key!="skills"{
-			
-			query=append(query,map[string]interface{}{key:bson.M{"$regex":value,"$options":"i"}})
-		}
-		if key=="skills"{
-			doc := bson.M{"skills":bson.M{"$in":value}}
-			query=append(query,doc)
-		}
-		
+			query=append(query,map[string]interface{}{key:bson.M{"$regex":"^"+fmt.Sprintf("%v", value),"$options":"i"}})
 	}
 	fmt.Println(query)
-	if err := database.Collection().Find(bson.M{"$or":query,"empstatus":"Activated"}).All(&employeelist); err != nil {
+	if err := database.Collection().Find(bson.M{"$or":query}).All(&employeelist); err != nil {
 		return err,[]model.EmpDetails{}
 	}
 	return nil,employeelist
@@ -177,7 +169,74 @@ func DeleteEmpFromDB(deletedetails map[string]string) (error,string){
 		}
 		return nil,"Permanently deleted employee"
 }
-
+func DashBoardData(email interface{}) (error, map[string]interface {}){
+		origin:= email.(map[string]interface {})
+		details:=make(map[string]interface {}) 
+		k:=make(map[string]interface {}) 
+		var empdetails []model.EmpDetails
+		if err := database.Collection().Find(origin).All(&empdetails); err != nil {
+			return err,k
+		}
+		query := []bson.M{ 
+			bson.M{"$match":bson.M{"email":origin["email"],"status":"pending"}},
+			bson.M{"$count":"pending"},
+		  }
+		  var list []interface{}
+		  if err := database.Leaves().Pipe(query).All(&list); err != nil {
+			return err,k
+		}
+		var managerdetails []model.EmpDetails
+		if err := database.Collection().Find(bson.M{"email":empdetails[0].Manageremail}).All(&managerdetails); err != nil {
+			return err,k
+		}
+		type pending struct{
+			Pending int64 `json:"pending"`
+		}
+		var pendingap pending
+		pendingap.Pending=0
+		fmt.Println(empdetails)
+		fmt.Println(managerdetails)
+		fmt.Println(list)
+		details["holidays"]=empdetails[0].Holidays
+		details["remholidays"]=empdetails[0].Remholidays
+		details["department"]=empdetails[0].Department
+		if len(list)>0{
+			details["approval"]=list[0]
+		}else{
+			details["approval"]=pendingap
+		}
+		
+		details["manager"]=managerdetails[0].Firstname+" "+managerdetails[0].Lastname
+		return nil,details
+		
+}
+func GetAttendanceFromDB(attendance interface{}) (error,[]model.Attendance){
+	origin:= attendance.(map[string]interface {})
+	months:=make(map[int64]string)
+	months[0]="January"
+	months[1]="February"
+	months[2]="March"
+	months[3]="April"
+	months[4]="May"
+	months[5]="June"
+	months[6]="July"
+	months[7]="August"
+	months[8]="September"
+	months[9]="October"
+	months[10]="November"
+	months[11]="December"
+	t:=time.Now()
+	m:=(origin["month"].(float64))+1
+	minDate:= time.Date(int(origin["year"].(float64)), time.Month(m), 1, 0, 0, 0, 0, t.Location())
+	fmt.Println(minDate)
+	maxDate:=minDate.AddDate(0,1,0)
+	fmt.Println(maxDate)
+	var result []model.Attendance
+	if err := database.Attendance().Find(bson.M{"clockin":bson.M{"$gte":minDate,"$lt":maxDate},"empid":origin["empid"]}).All(&result); err != nil {
+		return err,[]model.Attendance{}
+	}
+	return nil,result
+}
 func generatePassword() string {
 
 	rand.Seed(time.Now().Unix())
@@ -224,32 +283,65 @@ func generatePassword() string {
 }
 
 
-// query := []bson.M{ // NOTE: slice of bson.M here
-// 	bson.M{
-// 		"$match":bson.M{
-// 			"manageremail":empdetails.Email,
-// 			"status":empdetails.Status
-// 		}
-// 	},
-// 	bson.M{
-// 	  "$lookup": bson.M{
-// 		"from": "EmployeeData",
-// 		"localField":"email",
-// 		"foreignField":"email",
-// 		"pipeline":[]bson.M{
-// 			bson.M{
-// 				"$project":bson.M{
-// 					"firstname":1,
-// 					"lastname":1
-// 				}
-// 			}
-// 		},
-// 		"as":"details"
-// 	},
-// 	},
-// 	bson.M{
-// 	  "$unwind":bson.M{
-// 		"path": "$details"
-// 	  }
-// 	},
-//   }
+func CaptureClockinToDB(attendance interface{})(error,bool){
+	origin:= attendance.(map[string]interface {})
+	origin["clockin"]=time.Now()
+	origin["status"]=false
+	err:=database.Attendance().Insert(origin)
+	if err != nil{
+		return err,false
+	}
+	return nil,true
+}
+
+func CaptureClockoutToDB(attendance interface{})(error,bool){
+	origin:= attendance.(map[string]interface {})
+	origin["clockout"]=time.Now()
+	err2:=database.Attendance().Update(bson.M{"empid":origin["empid"],"clockin":bson.M{"$gte":Bod(time.Now())},"status":false}, bson.M{"$set":bson.M{"clockout":origin["clockout"],"status":true}})
+			if err2 != nil{
+				return err2,false
+			}
+	return nil,true
+}
+func Bod(t time.Time) time.Time {
+    year, month, day := t.Date()
+    return time.Date(year, month, day, 0, 0, 0, 0, t.Location())
+}
+func Eod(t time.Time) time.Time {
+    year, month, day := t.Date()
+    return time.Date(year, month, day, 23, 59, 59, 59, t.Location())
+}
+func IsclockedinDB(attendance model.Attendance)(error, map[string]interface{}){
+	var ans []model.Attendance
+	result:=make(map[string]interface{})
+	if err := database.Attendance().Find(bson.M{"clockin":bson.M{"$gte":Bod(time.Now())},"empid":attendance.EmpID}).All(&ans); err != nil {
+		return err,result
+	}
+	if len(ans)>0{
+		result["status"]=true
+		result["clockin"]=ans[0].Clockin
+		return nil,result
+	}else{
+		result["status"]=false
+		return nil,result
+	}
+	
+}
+
+func IsclockedoutDB(attendance model.Attendance)(error, map[string]interface{}){
+	var ans []model.Attendance
+	result:=make(map[string]interface{})
+	if err := database.Attendance().Find(bson.M{"clockout":bson.M{"$gte":Bod(time.Now())},"empid":attendance.EmpID,"status":true}).All(&ans); err != nil {
+		return err,result
+	}
+	if len(ans)>0{
+		result["status"]=true
+		result["clockin"]=ans[0].Clockin
+		result["clockout"]=ans[0].Clockout
+		return nil,result
+	}else{
+		result["status"]=false
+		return nil,result
+	}
+	
+}

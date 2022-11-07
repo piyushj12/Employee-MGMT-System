@@ -27,6 +27,7 @@ type jwtCustomClaim struct {
 }
 
 func GenerateToken(login model.Login, expirationTime time.Duration) (string, error) {
+	fmt.Println(login)
 	claims := jwtCustomClaim{
 		Email: login.Email,
 		Password: login.Password,

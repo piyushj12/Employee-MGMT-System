@@ -23,3 +23,6 @@ func Collection() *mgo.Collection {
 func Leaves() *mgo.Collection {
 	return db.C("LeavesData")
 }
+func Attendance() *mgo.Collection {
+	return db.C("Attendance")
+}

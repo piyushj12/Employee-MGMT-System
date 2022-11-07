@@ -11,6 +11,7 @@ import HrEmployeeList from "../views/HR/ListEmployees.vue"
 import EmployeeProfile from '../views/Employee/profile.vue'
 import Approvals from '../views/Employee/approvals.vue'
 import ApplyLeaves from '../views/ApplyLeaves.vue'
+import AttendanceRecord from '../views/attendanceRecord.vue'
 Vue.use(VueRouter);
 
 const routes = [
@@ -101,6 +102,14 @@ const routes = [
     path: "/approvals",
     name: "Approvals",
     component: Approvals,
+    meta: {
+      requiresAuth: true
+  }
+  },
+  {
+    path: "/attendance/record",
+    name: "AttendanceRecord",
+    component: AttendanceRecord,
     meta: {
       requiresAuth: true
   }

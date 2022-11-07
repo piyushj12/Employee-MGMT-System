@@ -84,7 +84,14 @@ func AdminallEmpList(empdetails interface{}) (error,[]model.EmpDetails) {
 	}
 	return nil,employeelist
 }
-
+func DashBoardDataService(email interface{}) (error,map[string]interface {}) {
+	err,details:=DashBoardData(email)
+	k:=make(map[string]interface {}) 
+	if err != nil{
+		return err,k
+	}
+	return nil,details
+}
 func GetLeaves(empdetails model.Email) (error,[]model.Leaves) {
 	err,list:=GetLeavesFromDB(empdetails)
 	if err != nil{
@@ -112,4 +119,48 @@ func DeleteEmpPermanentlyService(deletedetails map[string]string) (error,string)
 		return err,""
 	}
 	return nil,msg
+}
+
+//capture clock in time
+func CaptureClockinTimeService(attendance interface{}) (error,bool) {
+	err,status:=CaptureClockinToDB(attendance)
+	if err != nil{
+		return err,false
+	}
+	return nil,status
+}
+
+//capture clock out time
+func CaptureClockoutTimeService(attendance interface{}) (error,bool) {
+	err,status:=CaptureClockoutToDB(attendance)
+	if err != nil{
+		return err,false
+	}
+	return nil,status
+}
+
+func IsclockedinService(attendance model.Attendance) (error, map[string]interface{}) {
+	err,status:=IsclockedinDB(attendance)
+	result:=make(map[string]interface{})
+	if err != nil{
+		return err,result
+	}
+	return nil,status
+}
+
+func IsclockedoutService(attendance model.Attendance) (error, map[string]interface{}) {
+	err,status:=IsclockedoutDB(attendance)
+	result:=make(map[string]interface{})
+	if err != nil{
+		return err,result
+	}
+	return nil,status
+}
+
+func GetAttendanceService(attendance interface{}) (error, []model.Attendance) {
+	err,result:=GetAttendanceFromDB(attendance)
+	if err != nil{
+		return err,[]model.Attendance{}
+	}
+	return nil,result
 }

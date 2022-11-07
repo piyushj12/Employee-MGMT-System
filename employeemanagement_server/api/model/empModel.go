@@ -1,5 +1,5 @@
 package model
-
+import "time"
 type Login struct {
 	Email string `json:"email"`
 	Password string `json:"password"`
@@ -31,6 +31,15 @@ type Leaves struct {
 	Numdays int64 `json:"numdays"`
 	Comment string `json:"comment"`
 	Details EmpDetails  `json:"details"`
+}
+
+type Attendance struct {
+	Aid string `json:"aid"`
+	EmpID string `json:"empid"`
+	Email string `json:"email"`
+	Status bool `json:"status"`
+	Clockin time.Time `json:"clockin"`
+	Clockout time.Time `json:"clockout"`
 }
 
 type EmpDetails struct {

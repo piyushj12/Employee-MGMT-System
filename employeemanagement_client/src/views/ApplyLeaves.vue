@@ -6,7 +6,7 @@
             </div>
         </div>
         <div class="row mt-3 justify-content-center">
-            <div class="col-sm-6">
+            <div class="col-lg-6 col-sm-12 col-md-12">
                  <h3 class="text-center">Apply for Leave</h3>
                 <div class="card p-5">
                    <label class="labels">Number of leaves remaining:</label>
@@ -22,7 +22,7 @@
                     <button class="btn btn-primary w-50" @click="submitforapproval">Submit for Approval</button>
                 </div>
             </div>
-            <div class="col-sm-6">
+            <div class="col-lg-6 col-sm-12 col-md-12">
                 <h3 class="text-center">Applied Leaves</h3>
                 <AppliedLeaves :email="mail" status="applied" field="email" />
             </div>
