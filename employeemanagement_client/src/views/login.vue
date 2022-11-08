@@ -79,15 +79,8 @@
           </div>
         </div>
         <div
-          class="col-sm-12 col-md-4 col-lg-4 registerpart d-flex text-center flex-column mx-auto justify-content-center align-items-center"
+          class="col-sm-12 col-md-4 col-lg-4 registerpart"
         >
-          <div class="p-3">
-            <h2 class="text-light">New Here?</h2>
-            <h6 class="text-light mt-3">
-              Signup and explore more Features.
-            </h6>
-            <router-link to="/registration" class=" btn btnsignup mt-3">Sign Up</router-link>
-          </div>
         </div>
       </div>
     </div>
@@ -143,13 +136,7 @@ export default {
               localStorage.setItem('role',VueJwtDecode.decode(data.Authorization).role)
               localStorage.setItem('email',VueJwtDecode.decode(data.Authorization).email)
                localStorage.setItem('empid',VueJwtDecode.decode(data.Authorization).empid)
-              if(localStorage.getItem('role')=='admin'){
-                this.$router.push({ path: "/admin" });
-              }else if(localStorage.getItem('role')=='hr'){
-                this.$router.push({ path: "/hr" });
-              }else{
-                this.$router.push({ path: "/employee" });
-              }
+              this.$router.push({ path: "/login/dashboard" });
              location.reload();
           }
       });

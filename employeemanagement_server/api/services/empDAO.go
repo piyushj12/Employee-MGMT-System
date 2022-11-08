@@ -345,3 +345,61 @@ func IsclockedoutDB(attendance model.Attendance)(error, map[string]interface{}){
 	}
 	
 }
+
+
+func AddDataToArray(details interface{}) (error,bool){
+	origin:= details.(map[string]interface {})
+	field := fmt.Sprintf("%v", origin["field"])
+	_,err2:=database.Company().Upsert(bson.M{"field":origin["field"]}, bson.M{"$addToSet":bson.M{field:origin["value"]}})
+	if err2 != nil{
+		return err2,false
+	}
+	return nil,true
+}
+
+func GetCompanyData()(error, map[string]interface{}){
+	result:=make(map[string]interface{})
+    var output []map[string]interface{}
+	if err := database.Company().Find(bson.M{}).All(&output); err != nil {
+		return err,result
+	}
+	for _,val:=range output{
+				if val["field"]=="departments"{
+					result["departments"]=val["departments"]
+				}
+				if val["field"]=="levels"{
+					result["levels"]=val["levels"]
+				}
+				if val["field"]=="holidays"{
+					result["holidays"]=val["holidays"]
+				}
+				if val["field"]=="years"{
+					result["years"]=val["years"]
+				}
+	}
+	
+	return nil,result
+}
+
+func AdminYearlyResetEmployeeDB() (error,bool){
+	var EmpOutput []model.EmpDetails
+	if err := database.Collection().Find(bson.M{}).All(&EmpOutput); err != nil {
+		return err,false
+	}
+
+	for _,val:=range EmpOutput{
+		err2:=database.Collection().Update(bson.M{"email":val.Email}, bson.M{"$set":bson.M{"remholidays":val.Holidays}})
+		if err2 != nil{
+		return err2,false
+		}
+	}
+	data:=make(map[string]interface{})
+	data["field"]="years"
+	t:=time.Now()
+	data["value"],_,_=t.Date()
+    err,_:=AddDataToArray(data)
+	if err!=nil{
+		return err,false
+	}
+	return nil,true
+}

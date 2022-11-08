@@ -164,3 +164,29 @@ func GetAttendanceService(attendance interface{}) (error, []model.Attendance) {
 	}
 	return nil,result
 }
+
+func AddinArray(details interface{}) (error,bool){
+	err,result:=AddDataToArray(details)
+	if err != nil{
+		return err,false
+	}
+	return nil,result
+}
+
+func GetDataOfCompany() (error,map[string]interface{}){
+	k:=make(map[string]interface{})
+	err,result:=GetCompanyData()
+	if err != nil{
+		return err,k
+	}
+	return nil,result
+}
+
+func AdminResetEmployeeDB() (error,bool){
+	err,result:=AdminYearlyResetEmployeeDB()
+	if err != nil{
+		return err,false
+	}
+	return nil,result
+}
+

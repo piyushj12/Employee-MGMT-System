@@ -64,6 +64,7 @@
 <script>
 import Services from '../services/EmployeeServices.js'
 import NoData from '@/components/noDataTemplate.vue';
+import UserServices from "@/services/userService.js";
 export default {
      components: {
   NoData,
@@ -72,17 +73,22 @@ export default {
         return{
             months:["January","February","March","April","May","June","July",
             "August","September","October","November","December"],
-            years:["2022"],
+            years:[],
             attendance:[],
             year:"",
             month:""
         }
     },
     created(){
-
+        this.getCompanyData()
     },
     methods:{
-                countDays(date1,date2){
+         getCompanyData(){
+             UserServices.getCompanyData().then((data) => {
+                  this.years=data.years.sort()
+            });
+        },
+            countDays(date1,date2){
              var Difference_In_Time  = new Date(date2).getTime()-new Date(date1).getTime();
             var min=Math.floor((Difference_In_Time /1000)/60);
             var hour=Math.floor(min/60)

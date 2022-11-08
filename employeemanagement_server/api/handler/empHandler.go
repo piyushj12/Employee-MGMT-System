@@ -305,3 +305,44 @@ func GetAttendance() gin.HandlerFunc {
 		
 	}
 }
+
+//Get attendance of emplyoee
+func AddToArray() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		var obj interface{}
+		c.Bind(&obj)
+		err,status:=service.AddinArray(obj)
+		if err!=nil{
+			c.JSON(http.StatusOK, gin.H{"message":err.Error()})
+		}else{
+			c.JSON(http.StatusOK, status)
+		}
+		
+	}
+}
+
+//Get attendance of emplyoee
+func GetCompantDataFromDB() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		err,data:=service.GetDataOfCompany()
+		if err!=nil{
+			c.JSON(http.StatusOK, gin.H{"message":err.Error()})
+		}else{
+			c.JSON(http.StatusOK, data)
+		}
+		
+	}
+}
+
+//Get attendance of emplyoee
+func AdminResetEmployee() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		err,data:=service.AdminResetEmployeeDB()
+		if err!=nil{
+			c.JSON(http.StatusOK, gin.H{"message":err.Error()})
+		}else{
+			c.JSON(http.StatusOK, data)
+		}
+		
+	}
+}

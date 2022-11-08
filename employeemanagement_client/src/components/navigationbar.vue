@@ -8,7 +8,7 @@
 
 		<h3>Menu</h3>
 		<div class="menu">
-			<router-link :to="link" class="button">
+			<router-link to="/login/dashboard" class="button">
 				<span class="material-icons"><i class="fa fa-home" aria-hidden="true"></i></span>
 				<span class="text">Home</span>
 			</router-link>
@@ -41,6 +41,10 @@
 				<span class="material-icons"><i class="fas fa-gifts"></i></span>
 				<span class="text">Apply Leaves</span>
 			</router-link>
+			 <router-link to="/settings" class="button" v-if="role=='admin'">
+				<span class="material-icons"><i class="fa fa-cog" aria-hidden="true"></i></span>
+				<span class="text">Settings</span>
+			</router-link>
 		</div>
 	</aside>
 </template>
@@ -58,13 +62,13 @@ export default{
   created(){
      this.is_expanded = ref(localStorage.getItem("is_expanded") === true)
      this.role=localStorage.getItem('role')
-     if(this.role=="admin"){
-        this.link="/admin"
-     }else if(this.role=="hr"){
-         this.link="/hr"
-     }else{
-         this.link="/employee"
-     }
+    //  if(this.role=="admin"){
+    //     this.link="/admin"
+    //  }else if(this.role=="hr"){
+    //      this.link="/hr"
+    //  }else{
+    //      this.link="/employee"
+    //  }
   },
   methods:{
     ToggleMenu() {

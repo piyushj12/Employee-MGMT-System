@@ -17,12 +17,6 @@
                        <input type="text" class="form-control" v-model="profile.contact" />
                     </td>
                 </tr>
-                 <tr>
-                    <th>Password</th>
-                    <td>
-                        <input type="password" class="form-control" v-model="profile.password" />
-                    </td>
-                </tr>
             </tbody>
         </table>
         </div>
@@ -83,12 +77,15 @@
                             </tr>
                             <tr>
                                 <th>Password</th>
-                                <td>{{profile.password}}</td>
+                                <td>
+                                    <input :type="type" v-model="profile.password" :disabled="!isEdit" class="form-control"/>
+                                    <button class="btn btn-secondary btn-sm" @click="ChangePassword()">{{passbtnname}}</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                     <div class="text-center pb-2">
-                        <button class="btn btn-primary" @click="openEditModel()">Edit Profile</button>
+                        <button class="btn btn-primary"  @click="openEditModel()">Edit Profile</button>
                     </div>
                 </div>
             </div>
@@ -101,6 +98,9 @@ export default {
    data(){
     return{
         profile:{},
+        isEdit:false,
+        passbtnname:"Edit",
+        type:"password"
     }
    },
    created(){
@@ -113,8 +113,40 @@ export default {
                 this.profile=data[0]
             })
         },
+        async ChangePassword(){
+            if(!this.isEdit){
+                this.isEdit=true
+                this.type="text"
+                this.passbtnname="Change"
+            }else{
+                 await Services.editProfile({"email":this.profile.email,"password":this.profile.password})
+                .then((data) => {
+                    if(data.message=="employee update sucessfully"){
+                         this.$toast.open({
+                            message:"Please login again",
+                            type: "success",
+                            position: "top",
+                        });
+                        localStorage.clear()
+                        this.$router.push({ path: "/login" });
+                        this.isEdit=false
+                        this.passbtnname="Edit"
+                    } else{
+                         this.$toast.open({
+                            message:data.message,
+                            type: "error",
+                            position: "top",
+                        });
+                         this.type="password"
+                        this.isEdit=false
+                        this.passbtnname="Edit"
+                    }
+                })
+            }
+          
+        },
         async EditProfile(){
-             await Services.editProfile({"email":this.profile.email,"address":this.profile.address,"contact":this.profile.contact,"password":this.profile.password})
+             await Services.editProfile({"email":this.profile.email,"address":this.profile.address,"contact":this.profile.contact})
             .then(() => {
                 this.getEmployee()
                 this.$refs["modal-editprofile"].hide();

@@ -3,9 +3,10 @@ package route
 import (
 	"github.com/gin-gonic/gin"
 	handler "EmployeeAssisgnment/api/handler"
+	
 )
 
-func Init(r,o *gin.RouterGroup) {
+func Init(r,o,a *gin.RouterGroup) {
 	//route for employee registartion
 	//o.POST("/register", handler.AddEmp())
 	//route for employee/hr login
@@ -27,5 +28,8 @@ func Init(r,o *gin.RouterGroup) {
 	r.POST("/check/clockin/exists",handler.Isclockedin())
 	r.POST("/check/clockout/exists",handler.Isclockedout())
 	r.POST("/get/attendance",handler.GetAttendance())
+	r.PUT("/update/array", handler.AddToArray())
+	r.GET("/get/company/data", handler.GetCompantDataFromDB())
+	r.PUT("/reset/employee/data", handler.AdminResetEmployee())
 	
 }

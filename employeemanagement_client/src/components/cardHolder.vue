@@ -33,7 +33,7 @@
               :value="details.manager"
             />
           </div>
-          <div class="col-sm-12 col-md-12 col-lg-6 p-2">
+          <!-- <div class="col-sm-12 col-md-12 col-lg-6 p-2">
             <CardTemplate
               title="Check-in Time"
               color="card-color-blue"
@@ -48,7 +48,7 @@
               icon="far fa-copyright"
               value="12:00"
             />
-          </div>
+          </div> -->
         </div>
     </div>
 </template>

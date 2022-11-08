@@ -26,3 +26,7 @@ func Leaves() *mgo.Collection {
 func Attendance() *mgo.Collection {
 	return db.C("Attendance")
 }
+
+func Company() *mgo.Collection {
+	return db.C("CompanyData")
+}

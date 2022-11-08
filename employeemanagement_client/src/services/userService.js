@@ -44,5 +44,29 @@ async getManagerService() {
   }catch(error){
     return error.response.data;
   }
+},
+async AddField(payload) {
+  try{
+    let res = await apiClient.put("/r/update/array",payload)
+    return res.data;
+  }catch(error){
+    return error.response.data;
+  }
+},
+async getCompanyData() {
+  try{
+    let res = await apiClient.get("/r/get/company/data")
+    return res.data;
+  }catch(error){
+    return error.response.data;
+  }
+},
+async ResetData() {
+  try{
+    let res = await apiClient.put("/r/reset/employee/data")
+    return res.data;
+  }catch(error){
+    return error.response.data;
+  }
 }
 };

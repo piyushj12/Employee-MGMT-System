@@ -21,12 +21,10 @@
                 </select>
                  <label>Department Name:</label>
                      <select  v-model="emp.department" class="form-control">
-                       <option disabled value="">Please Select Department</option>
-                    <option value="Administration">Administration</option>
-                    <option value="Technical support">Technical support</option>
-                    <option value="Application development">Application development</option>
-                    <option value="IT security">IT security</option>
-                    <option value="Human Resource">Human Resource</option>
+                     <option disabled value="">Please Select Department</option>
+                    <option v-for="(value,index) in departments" :key="index" :value="value">
+                            {{value}}
+                    </option>
                 </select>
                  <label>Address:</label>
                 <input type="text" placeholder="Enter employee's address" v-model="emp.address" class="form-control"/>
@@ -38,19 +36,11 @@
                 <input type="text" placeholder="Enter employee's contact" v-model="emp.contact" class="form-control"/>
 
                  <label>Level:</label>
-                     <select v-model="emp.level" class="form-control">
-                       <option disabled value="">Please Select Level</option>
-                    <option value="New Graduate">New Graduate</option>
-                    <option value="SDE 1">SDE 1</option>
-                    <option value="SDE 2">SDE 2</option>
-                    <option value="SDE 3">SDE 3</option>
-                    <option value="SDE 4">SDE 4</option>
-                    <option value="Project Manager">Project Manager</option>
-                   <option value="Recruiting Manager">Recruiting Manager</option>
-                   <option value="Managing Director">Managing Director</option>
-                    <option value="CEO">CEO</option>
-                     <option value="CFO">CFO</option>
-                      <option value="CTO">CTO</option>
+                    <select  v-model="emp.level" class="form-control">
+                     <option disabled value="">Please Select Position</option>
+                    <option v-for="(value,index) in levels" :key="index" :value="value">
+                            {{value}}
+                    </option>
                 </select>
                  <label>Role:</label>
                 <select v-model="emp.role" class="form-control">
@@ -66,11 +56,11 @@
                     </option>
                 </select>
                 <label>Yearly Holidays:</label>
-                 <select v-model.number="emp.holidays" class="form-control">
-                     <option disabled value="">Please Select</option>
-                    <option value="10">10</option>
-                    <option value="20">20</option>
-                    <option value="30">30</option>
+                <select  v-model.number="emp.holidays" class="form-control">
+                     <option disabled value="">Please Select Holidays</option>
+                    <option v-for="(holiday,index) in holidaysArr" :key="index" :value="holiday">
+                            {{holiday}}
+                    </option>
                 </select>
                 <button class="btn btn-primary w-50 mt-3" @click="addEmployee()">Add</button>
                 </div>
@@ -100,13 +90,24 @@ export default {
                 gender:""
 
             },
-            managers:[]
+            managers:[],
+            departments:[],
+            levels:[],
+            holidaysArr:[]
         }
     },
     created(){
         this.getManagers()
+        this.getCompanyData()
     },
     methods:{
+        getCompanyData(){
+             UserServices.getCompanyData().then((data) => {
+                  this.departments=data.departments
+                  this.levels=data.levels
+                  this.holidaysArr=data.holidays.sort()
+            });
+        },
         async getManagers(){
              await UserServices.getManagerService().then((data) => {
                    this.managers=data
