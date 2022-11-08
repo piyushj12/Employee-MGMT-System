@@ -75,7 +75,7 @@ export default{
   }
 </script>
 
-<style lang="scss" scoped>
+ <style lang="scss" scoped>
 aside {
 	display: flex;
 	flex-direction: column;
@@ -154,14 +154,6 @@ aside {
 			}
 		}
 	}
-	.footer {
-		opacity: 0;
-		transition: opacity 0.3s ease-in-out;
-		p {
-			font-size: 0.875rem;
-			color: var(--grey);
-		}
-	}
 	&.is-expanded {
 		width: var(--sidebar-width);
 		.menu-toggle-wrap {
@@ -179,13 +171,11 @@ aside {
 				margin-right: 1rem;
 			}
 		}
-		.footer {
-			opacity: 0;
-		}
+		
 	}
 	@media (max-width: 1024px) {
 		// position: absolute;
 		z-index: 99;
 	}
 }
-</style>
+ </style>

@@ -3,7 +3,7 @@
       <headerbar/>
       <div class="wrapper">
            <navigationbar v-if="token!=null" class="first"/>
-            <router-view />
+            <router-view  class="first"/>
       </div>
      
       <footerbar/>
@@ -68,22 +68,22 @@ button {
 	outline: none;
 	background: none;
 }
-.app {
-	main {
-		flex: 1 1 0;
-		padding: 2rem;
-		@media (max-width: 1024px) {
-			padding-left: 6rem;
-		}
-	}
-}
+// .app {
+// 	main {
+// 		flex: 1 1 0;
+// 		padding: 2rem;
+// 		@media (max-width: 1024px) {
+// 			padding-left: 6rem;
+// 		}
+// 	}
+// }
 
 
 .wrapper{
-    
+      display: flex;
 }
 .first{
   //  width: 300px;
-  float: left;
+  align-items: stretch;
 }
 </style>
