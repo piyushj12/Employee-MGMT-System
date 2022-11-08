@@ -1,0 +1,367 @@
+[{
+  "_id": {
+    "$oid": "636415109e0ee0db3e645dd1"
+  },
+  "lid": "321da8fb-7e5e-42d5-bfa5-05d91bec178b",
+  "email": "prachi@gmail.com",
+  "holidays": 30,
+  "manageremail": "niraj@gmail.com",
+  "status": "cancelled",
+  "todate": {
+    "$numberLong": "1669784400000"
+  },
+  "fromdate": {
+    "$numberLong": "1669352400000"
+  },
+  "applieddate": {
+    "$numberLong": "1667503376670"
+  },
+  "numdays": 6,
+  "comment": "Sick leaves"
+},{
+  "_id": {
+    "$oid": "636415299e0ee0db3e645de1"
+  },
+  "lid": "08c633b5-e645-46ba-ba13-321b1a0d0274",
+  "email": "prachi@gmail.com",
+  "holidays": 30,
+  "manageremail": "niraj@gmail.com",
+  "status": "approved",
+  "todate": {
+    "$numberLong": "1671858000000"
+  },
+  "fromdate": {
+    "$numberLong": "1671598800000"
+  },
+  "applieddate": {
+    "$numberLong": "1667503401194"
+  },
+  "numdays": 4,
+  "comment": "Personal time"
+},{
+  "_id": {
+    "$oid": "63641c8a9e0ee0db3e6461c6"
+  },
+  "lid": "24759c5e-76c5-4068-a9c9-ded397cac0d1",
+  "email": "prachi@gmail.com",
+  "holidays": 30,
+  "manageremail": "niraj@gmail.com",
+  "status": "approved",
+  "todate": {
+    "$numberLong": "1672462800000"
+  },
+  "fromdate": {
+    "$numberLong": "1672462800000"
+  },
+  "applieddate": {
+    "$numberLong": "1667505290887"
+  },
+  "numdays": 1,
+  "comment": "fsdfsdfsdf"
+},{
+  "_id": {
+    "$oid": "63641cc89e0ee0db3e6461f1"
+  },
+  "lid": "cc962a84-7ff2-4185-aee9-4b16324774bb",
+  "email": "prachi@gmail.com",
+  "holidays": 30,
+  "manageremail": "niraj@gmail.com",
+  "status": "approved",
+  "todate": {
+    "$numberLong": "1669957200000"
+  },
+  "fromdate": {
+    "$numberLong": "1669957200000"
+  },
+  "applieddate": {
+    "$numberLong": "1667505352287"
+  },
+  "numdays": 1,
+  "comment": "sswdw"
+},{
+  "_id": {
+    "$oid": "636423369e0ee0db3e646571"
+  },
+  "lid": "c17ea0b1-4e2f-4b29-abee-369968d3555d",
+  "email": "prachi@gmail.com",
+  "holidays": 30,
+  "manageremail": "niraj@gmail.com",
+  "status": "approved",
+  "todate": {
+    "$numberLong": "1676091600000"
+  },
+  "fromdate": {
+    "$numberLong": "1675918800000"
+  },
+  "applieddate": {
+    "$numberLong": "1667506998978"
+  },
+  "numdays": 3,
+  "comment": "sdsdsdddsds"
+},{
+  "_id": {
+    "$oid": "63656bf39e0ee0db3e64d447"
+  },
+  "lid": "5cdb38fb-d19e-4bc8-8ab8-2d7e0712adbf",
+  "email": "niraj@gmail.com",
+  "holidays": 30,
+  "remholidays": 0,
+  "manageremail": "pichai@gmail.com",
+  "status": "approved",
+  "todate": {
+    "$numberLong": "1671080400000"
+  },
+  "fromdate": {
+    "$numberLong": "1670821200000"
+  },
+  "applieddate": {
+    "$numberLong": "1667591155463"
+  },
+  "numdays": 4,
+  "comment": "rterterte",
+  "details": {
+    "firstname": "",
+    "lastname": "",
+    "department": "",
+    "address": "",
+    "empid": "",
+    "empstatus": "",
+    "email": "",
+    "password": "",
+    "contact": "",
+    "level": "",
+    "manageremail": "",
+    "holidays": 0,
+    "remholidays": 0,
+    "gender": "",
+    "role": ""
+  }
+},{
+  "_id": {
+    "$oid": "63656e5a9e0ee0db3e64d5b9"
+  },
+  "lid": "681cf298-a77e-4b23-81fa-0b9f6dc2ed32",
+  "email": "prachi@gmail.com",
+  "holidays": 30,
+  "remholidays": 0,
+  "manageremail": "niraj@gmail.com",
+  "status": "pending",
+  "todate": {
+    "$numberLong": "1702098000000"
+  },
+  "fromdate": {
+    "$numberLong": "1701838800000"
+  },
+  "applieddate": {
+    "$numberLong": "1667591770623"
+  },
+  "numdays": 4,
+  "comment": "dfsdfsd",
+  "details": {
+    "firstname": "",
+    "lastname": "",
+    "department": "",
+    "address": "",
+    "empid": "",
+    "empstatus": "",
+    "email": "",
+    "password": "",
+    "contact": "",
+    "level": "",
+    "manageremail": "",
+    "holidays": 0,
+    "remholidays": 0,
+    "gender": "",
+    "role": ""
+  }
+},{
+  "_id": {
+    "$oid": "63657b759e0ee0db3e64dda1"
+  },
+  "lid": "3e36c77e-64de-4920-8b39-ef43257757a4",
+  "email": "niraj@gmail.com",
+  "holidays": 30,
+  "remholidays": 0,
+  "manageremail": "pichai@gmail.com",
+  "status": "pending",
+  "todate": {
+    "$numberLong": "1671858000000"
+  },
+  "fromdate": {
+    "$numberLong": "1671512400000"
+  },
+  "applieddate": {
+    "$numberLong": "1667595125059"
+  },
+  "numdays": 5,
+  "comment": "cghdfgd",
+  "details": {
+    "firstname": "",
+    "lastname": "",
+    "department": "",
+    "address": "",
+    "empid": "",
+    "empstatus": "",
+    "email": "",
+    "password": "",
+    "contact": "",
+    "level": "",
+    "manageremail": "",
+    "holidays": 0,
+    "remholidays": 0,
+    "gender": "",
+    "role": ""
+  }
+},{
+  "_id": {
+    "$oid": "63657c929e0ee0db3e64de97"
+  },
+  "lid": "d74651c1-75d1-4ec9-8682-282c10d6b114",
+  "email": "kanchan@gmail.com",
+  "holidays": 20,
+  "remholidays": 0,
+  "manageremail": "prachi@gmail.com",
+  "status": "approved",
+  "todate": {
+    "$numberLong": "1671166800000"
+  },
+  "fromdate": {
+    "$numberLong": "1670907600000"
+  },
+  "applieddate": {
+    "$numberLong": "1667595410280"
+  },
+  "numdays": 4,
+  "comment": "sdfsesd",
+  "details": {
+    "firstname": "",
+    "lastname": "",
+    "department": "",
+    "address": "",
+    "empid": "",
+    "empstatus": "",
+    "email": "",
+    "password": "",
+    "contact": "",
+    "level": "",
+    "manageremail": "",
+    "holidays": 0,
+    "remholidays": 0,
+    "gender": "",
+    "role": ""
+  }
+},{
+  "_id": {
+    "$oid": "63657cca9e0ee0db3e64dedf"
+  },
+  "lid": "b63c68d9-61f9-4f5e-b5e7-8780a3e4f6e1",
+  "email": "kanchan@gmail.com",
+  "holidays": 20,
+  "remholidays": 0,
+  "manageremail": "prachi@gmail.com",
+  "status": "cancelled",
+  "todate": {
+    "$numberLong": "1672376400000"
+  },
+  "fromdate": {
+    "$numberLong": "1672117200000"
+  },
+  "applieddate": {
+    "$numberLong": "1667595466188"
+  },
+  "numdays": 4,
+  "comment": "fdh rgdryrd",
+  "details": {
+    "firstname": "",
+    "lastname": "",
+    "department": "",
+    "address": "",
+    "empid": "",
+    "empstatus": "",
+    "email": "",
+    "password": "",
+    "contact": "",
+    "level": "",
+    "manageremail": "",
+    "holidays": 0,
+    "remholidays": 0,
+    "gender": "",
+    "role": ""
+  }
+},{
+  "_id": {
+    "$oid": "63657cf99e0ee0db3e64df15"
+  },
+  "lid": "25aec6a6-b198-4d06-aabc-abd7a9cd9db6",
+  "email": "kanchan@gmail.com",
+  "holidays": 20,
+  "remholidays": 0,
+  "manageremail": "prachi@gmail.com",
+  "status": "approved",
+  "todate": {
+    "$numberLong": "1703134800000"
+  },
+  "fromdate": {
+    "$numberLong": "1702875600000"
+  },
+  "applieddate": {
+    "$numberLong": "1667595513454"
+  },
+  "numdays": 4,
+  "comment": "hfdhydfh",
+  "details": {
+    "firstname": "",
+    "lastname": "",
+    "department": "",
+    "address": "",
+    "empid": "",
+    "empstatus": "",
+    "email": "",
+    "password": "",
+    "contact": "",
+    "level": "",
+    "manageremail": "",
+    "holidays": 0,
+    "remholidays": 0,
+    "gender": "",
+    "role": ""
+  }
+},{
+  "_id": {
+    "$oid": "636a7e41ae8a0d801f1bc4f1"
+  },
+  "lid": "5731351d-7080-4936-bd34-277585056090",
+  "email": "test@gmail.com",
+  "holidays": 20,
+  "remholidays": 0,
+  "manageremail": "kanchan@gmail.com",
+  "status": "approved",
+  "todate": {
+    "$numberLong": "1671771600000"
+  },
+  "fromdate": {
+    "$numberLong": "1671426000000"
+  },
+  "applieddate": {
+    "$numberLong": "1667923521271"
+  },
+  "numdays": 5,
+  "comment": "uiop",
+  "details": {
+    "firstname": "",
+    "lastname": "",
+    "department": "",
+    "address": "",
+    "empid": "",
+    "empstatus": "",
+    "email": "",
+    "password": "",
+    "contact": "",
+    "level": "",
+    "manageremail": "",
+    "holidays": 0,
+    "remholidays": 0,
+    "gender": "",
+    "role": ""
+  }
+}]

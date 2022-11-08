@@ -1,0 +1,191 @@
+[{
+  "_id": {
+    "$oid": "635c38c69e0ee0db3e6298d6"
+  },
+  "firstname": "Tushar",
+  "lastname": "Nemade",
+  "department": "CS",
+  "address": "Charlotte",
+  "empid": "TusharNeCS144",
+  "empstatus": "active",
+  "email": "admin@gmail.com",
+  "password": "admin",
+  "contact": "9803279720",
+  "level": "admin",
+  "role": "admin",
+  "holidays": 100000,
+  "manageremail": "admin@gmail.com",
+  "remholidays": 100000,
+  "gender": "Male"
+},{
+  "_id": {
+    "$oid": "6362ea3a9e0ee0db3e6407ed"
+  },
+  "firstname": "Sundar ",
+  "lastname": "Pichai",
+  "department": "Administration",
+  "address": "California",
+  "empid": "Sundar PiAdmi390",
+  "empstatus": "active",
+  "email": "pichai@gmail.com",
+  "password": "1234",
+  "contact": "7894561230",
+  "level": "CEO",
+  "manageremail": "pallavi@gmail.com",
+  "holidays": 30,
+  "role": "employee",
+  "remholidays": 30,
+  "gender": "Male"
+},{
+  "_id": {
+    "$oid": "6362ecc09e0ee0db3e640b23"
+  },
+  "firstname": "Pallavi",
+  "lastname": "Bhadri",
+  "department": "Administration",
+  "address": "Charlotte",
+  "empid": "PallaviBhAdmi823",
+  "empstatus": "active",
+  "email": "pallavi@gmail.com",
+  "password": "1234",
+  "contact": "123456789",
+  "level": "Managing Director",
+  "manageremail": "admin@gmail.com",
+  "holidays": 30,
+  "role": "employee",
+  "remholidays": 30,
+  "gender": "Female"
+},{
+  "_id": {
+    "$oid": "6362ed129e0ee0db3e640b51"
+  },
+  "firstname": "Niraj",
+  "lastname": "Kini",
+  "department": "Administration",
+  "address": "Charlotte",
+  "empid": "NirajKiAdmi199",
+  "empstatus": "active",
+  "email": "niraj@gmail.com",
+  "password": "1234",
+  "contact": "123456789",
+  "level": "CFO",
+  "manageremail": "pichai@gmail.com",
+  "holidays": 30,
+  "role": "employee",
+  "remholidays": 30,
+  "gender": "Male"
+},{
+  "_id": {
+    "$oid": "6362ed819e0ee0db3e640b94"
+  },
+  "firstname": "Shweta",
+  "lastname": "Shah",
+  "department": "Administration",
+  "address": "seattle",
+  "empid": "ShwetaShAdmi917",
+  "empstatus": "active",
+  "email": "shweta@gmail.com",
+  "password": "1234",
+  "contact": "1320216544",
+  "level": "CTO",
+  "manageremail": "pichai@gmail.com",
+  "holidays": 30,
+  "role": "employee",
+  "remholidays": 30,
+  "gender": "Female"
+},{
+  "_id": {
+    "$oid": "6362edf19e0ee0db3e640bd5"
+  },
+  "firstname": "Koushik",
+  "lastname": "Kulkarni",
+  "department": "Application development",
+  "address": "Seattle",
+  "empid": "KoushikKuAppl523",
+  "empstatus": "active",
+  "email": "kkulka@gmail.com",
+  "password": "1234",
+  "contact": "132132165464",
+  "level": "SDE 3",
+  "manageremail": "shweta@gmail.com",
+  "holidays": 30,
+  "role": "employee",
+  "remholidays": 30,
+  "gender": "Male"
+},{
+  "_id": {
+    "$oid": "6362ee299e0ee0db3e640bf9"
+  },
+  "firstname": "Simran",
+  "lastname": "Bhoir",
+  "department": "Human Resource",
+  "address": "New york",
+  "empid": "SimranBhHuma327",
+  "empstatus": "active",
+  "email": "sim@gmail.com",
+  "password": "1234",
+  "contact": "1231321113123",
+  "level": "Recruiting Manager",
+  "manageremail": "niraj@gmail.com",
+  "holidays": 30,
+  "role": "hr",
+  "remholidays": 30,
+  "gender": "Female"
+},{
+  "_id": {
+    "$oid": "6362ee629e0ee0db3e640c1b"
+  },
+  "firstname": "Piyush",
+  "lastname": "Jain",
+  "department": "IT security",
+  "address": "Seattle",
+  "empid": "PiyushJaIT s731",
+  "empstatus": "active",
+  "email": "piyush@gmail.com",
+  "password": "1234",
+  "contact": "1234567890",
+  "level": "SDE 4",
+  "manageremail": "shweta@gmail.com",
+  "holidays": 30,
+  "role": "employee",
+  "remholidays": 30,
+  "gender": "Male"
+},{
+  "_id": {
+    "$oid": "6362eea39e0ee0db3e640c44"
+  },
+  "firstname": "prachi",
+  "lastname": "chandanshive",
+  "department": "Human Resource",
+  "address": "Florida 13543543",
+  "empid": "fgdsggfefe",
+  "empstatus": "active",
+  "email": "prachi@gmail.com",
+  "password": "1234",
+  "contact": "1236547895465",
+  "level": "Recruiting Manager",
+  "manageremail": "niraj@gmail.com",
+  "holidays": 30,
+  "role": "hr",
+  "remholidays": 30,
+  "gender": "Female"
+},{
+  "_id": {
+    "$oid": "63657be89e0ee0db3e64ddf4"
+  },
+  "firstname": "Kanchan",
+  "lastname": "Bharambe",
+  "department": "Human Resource",
+  "address": "Seattle, 52001",
+  "empid": "KanchanBhHuma602",
+  "empstatus": "active",
+  "email": "kanchan@gmail.com",
+  "password": "1234",
+  "contact": "7805648956",
+  "level": "Recruiting Manager",
+  "manageremail": "prachi@gmail.com",
+  "holidays": 20,
+  "remholidays": 16,
+  "gender": "Female",
+  "role": "hr"
+}]

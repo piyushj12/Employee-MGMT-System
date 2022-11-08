@@ -20,11 +20,11 @@
          <router-link class="text-light linkclass" to="/contact"><h5>Contact</h5></router-link> 
           <i class="fa fa-home fa-lg mt-3"></i>&nbsp;8765 University Road Apt L
           <br />
-          <i class="fas fa-phone fa-lg pt-4"></i>&nbsp;(980) 327 9722
+          <i class="fas fa-phone fa-lg pt-4"></i>&nbsp;2222 333 666 999
           <br />
           <a class="text-light anchorstyle" href="mailto:abc@example.com'">
             <i class="fas fa-envelope fa-lg pt-4 pb-2"></i
-            >&nbsp;tnemade@uncc.edu
+            >&nbsp;ems@gmail.com
           </a>
         </div>
       </div>

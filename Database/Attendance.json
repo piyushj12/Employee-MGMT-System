@@ -1,0 +1,353 @@
+[{
+  "_id": {
+    "$oid": "6368250e9e0ee0db3e65a0f8"
+  },
+  "empid": "fgdsggfefe",
+  "clockin": {
+    "$date": {
+      "$numberLong": "1667769614820"
+    }
+  },
+  "status": true,
+  "email": "prachi@gmail.com",
+  "clockout": {
+    "$date": {
+      "$numberLong": "1667769662333"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "636825a29e0ee0db3e65a164"
+  },
+  "email": "pichai@gmail.com",
+  "empid": "Sundar PiAdmi390",
+  "clockin": {
+    "$date": {
+      "$numberLong": "1667769762384"
+    }
+  },
+  "status": false
+},{
+  "_id": {
+    "$oid": "636825c09e0ee0db3e65a187"
+  },
+  "email": "niraj@gmail.com",
+  "empid": "NirajKiAdmi199",
+  "clockin": {
+    "$date": {
+      "$numberLong": "1667769792147"
+    }
+  },
+  "status": true,
+  "clockout": {
+    "$date": {
+      "$numberLong": "1667773747857"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "636825d29e0ee0db3e65a1a6"
+  },
+  "email": "kanchan@gmail.com",
+  "empid": "KanchanBhHuma602",
+  "clockin": {
+    "$date": {
+      "$numberLong": "1667769810455"
+    }
+  },
+  "status": true,
+  "clockout": {
+    "$date": {
+      "$numberLong": "1667773722827"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "636826089e0ee0db3e65a1da"
+  },
+  "email": "pallavi@gmail.com",
+  "empid": "PallaviBhAdmi823",
+  "clockin": {
+    "$date": {
+      "$numberLong": "1667769864658"
+    }
+  },
+  "status": true,
+  "clockout": {
+    "$date": {
+      "$numberLong": "1667773767078"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6368262b9e0ee0db3e65a1fe"
+  },
+  "status": true,
+  "email": "shweta@gmai.com",
+  "empid": "ShwetaShAdmi917",
+  "clockin": {
+    "$date": {
+      "$numberLong": "1667769899169"
+    }
+  },
+  "clockout": {
+    "$date": {
+      "$numberLong": "1667773835405"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "636826439e0ee0db3e65a219"
+  },
+  "status": true,
+  "email": "kkulka@gmail.com",
+  "empid": "KoushikKuAppl523",
+  "clockin": {
+    "$date": {
+      "$numberLong": "1667769923289"
+    }
+  },
+  "clockout": {
+    "$date": {
+      "$numberLong": "1667773732905"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6368265c9e0ee0db3e65a239"
+  },
+  "email": "sim@gmail.com",
+  "empid": "SimranBhHuma327",
+  "clockin": {
+    "$date": {
+      "$numberLong": "1667769948773"
+    }
+  },
+  "status": true,
+  "clockout": {
+    "$date": {
+      "$numberLong": "1667773855243"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "636828449e0ee0db3e65a38d"
+  },
+  "clockin": {
+    "$date": {
+      "$numberLong": "1667770436683"
+    }
+  },
+  "status": true,
+  "email": "piyush@gmail.com",
+  "empid": "PiyushJaIT s731",
+  "clockout": {
+    "$date": {
+      "$numberLong": "1667773672933"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63690d3c9e0ee0db3e65d3d5"
+  },
+  "email": "prachi@gmail.com",
+  "empid": "fgdsggfefe",
+  "clockin": {
+    "$date": {
+      "$numberLong": "1667829052177"
+    }
+  },
+  "status": true,
+  "clockout": {
+    "$date": {
+      "$numberLong": "1667843265128"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63690d509e0ee0db3e65d3fc"
+  },
+  "email": "kanchan@gmail.com",
+  "empid": "KanchanBhHuma602",
+  "clockin": {
+    "$date": {
+      "$numberLong": "1667829072333"
+    }
+  },
+  "status": true,
+  "clockout": {
+    "$date": {
+      "$numberLong": "1667866591918"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63690d5c9e0ee0db3e65d412"
+  },
+  "clockin": {
+    "$date": {
+      "$numberLong": "1667829084047"
+    }
+  },
+  "status": true,
+  "email": "kkulka@gmail.com",
+  "empid": "KoushikKuAppl523",
+  "clockout": {
+    "$date": {
+      "$numberLong": "1667866603608"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63690d679e0ee0db3e65d429"
+  },
+  "email": "niraj@gmail.com",
+  "empid": "NirajKiAdmi199",
+  "clockin": {
+    "$date": {
+      "$numberLong": "1667829095431"
+    }
+  },
+  "status": true,
+  "clockout": {
+    "$date": {
+      "$numberLong": "1667866624198"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63690d749e0ee0db3e65d442"
+  },
+  "email": "pichai@gmail.com",
+  "empid": "Sundar PiAdmi390",
+  "clockin": {
+    "$date": {
+      "$numberLong": "1667829108578"
+    }
+  },
+  "status": true,
+  "clockout": {
+    "$date": {
+      "$numberLong": "1667866649591"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63690d7e9e0ee0db3e65d457"
+  },
+  "clockin": {
+    "$date": {
+      "$numberLong": "1667829118451"
+    }
+  },
+  "status": true,
+  "email": "pallavi@gmail.com",
+  "empid": "PallaviBhAdmi823",
+  "clockout": {
+    "$date": {
+      "$numberLong": "1667866637053"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63690d8f9e0ee0db3e65d472"
+  },
+  "email": "shweta@gmail.com",
+  "empid": "ShwetaShAdmi917",
+  "clockin": {
+    "$date": {
+      "$numberLong": "1667829135357"
+    }
+  },
+  "status": true,
+  "clockout": {
+    "$date": {
+      "$numberLong": "1667866670029"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63690d999e0ee0db3e65d488"
+  },
+  "email": "sim@gmail.com",
+  "empid": "SimranBhHuma327",
+  "clockin": {
+    "$date": {
+      "$numberLong": "1667829145650"
+    }
+  },
+  "status": true,
+  "clockout": {
+    "$date": {
+      "$numberLong": "1667866695751"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63690db89e0ee0db3e65d4ae"
+  },
+  "email": "piyush@gmail.com",
+  "empid": "PiyushJaIT s731",
+  "clockin": {
+    "$date": {
+      "$numberLong": "1667829176164"
+    }
+  },
+  "status": true,
+  "clockout": {
+    "$date": {
+      "$numberLong": "1667866681997"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "636a8336ae8a0d801f1bc7d9"
+  },
+  "empid": "test1234ffTech601",
+  "clockin": {
+    "$date": {
+      "$numberLong": "1667924790693"
+    }
+  },
+  "status": true,
+  "email": "test@gmail.com",
+  "clockout": {
+    "$date": {
+      "$numberLong": "1667924811774"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "636ab7c0ae8a0d801f1be0ed"
+  },
+  "email": "prachi@gmail.com",
+  "empid": "fgdsggfefe",
+  "clockin": {
+    "$date": {
+      "$numberLong": "1667938240600"
+    }
+  },
+  "status": true,
+  "clockout": {
+    "$date": {
+      "$numberLong": "1667938588692"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "636adaf1ae8a0d801f1bf4fe"
+  },
+  "status": true,
+  "email": "kkulka@gmail.com",
+  "empid": "KoushikKuAppl523",
+  "clockin": {
+    "$date": {
+      "$numberLong": "1667947249869"
+    }
+  },
+  "clockout": {
+    "$date": {
+      "$numberLong": "1667947252327"
+    }
+  }
+}]

@@ -1,0 +1,52 @@
+[{
+  "_id": {
+    "$oid": "636a9c17ae8a0d801f1bd17c"
+  },
+  "field": "departments",
+  "departments": [
+    "Administration",
+    "Technical support",
+    "Application development",
+    "IT security",
+    "Human Resource",
+    "test"
+  ]
+},{
+  "_id": {
+    "$oid": "636a9c31ae8a0d801f1bd1ce"
+  },
+  "field": "levels",
+  "levels": [
+    "SDE 1",
+    "SDE 2",
+    "SDE 3",
+    "SDE 4",
+    "Project Manager",
+    "Recruiting Manager",
+    "Managing Director",
+    "CEO",
+    "CFO",
+    "CTO",
+    "tred"
+  ]
+},{
+  "_id": {
+    "$oid": "636a9f07ae8a0d801f1bd36a"
+  },
+  "field": "holidays",
+  "holidays": [
+    40,
+    10,
+    20,
+    30,
+    50
+  ]
+},{
+  "_id": {
+    "$oid": "636ab598ae8a0d801f1bdf8c"
+  },
+  "field": "years",
+  "years": [
+    2022
+  ]
+}]
