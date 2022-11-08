@@ -22,21 +22,26 @@ func InitMiddleware(g *gin.Engine) {
 	r := g.Group("/r")
 	r.Use(RestrictedRequestMiddleware())
 
+	admin:=[]string{"admin"}
 	a := g.Group("/a")
-	a.Use(IsAdmin())
+	a.Use(IsAllowed(admin))
 
-	// h := g.Group("/h")
-	// h.Use(IsHr())
+	hr:=[]string{"hr"}
+	h := g.Group("/h")
+	h.Use(IsAllowed(hr))
 
-	// e := g.Group("/e")
-	// e.Use(IsEmployee())
+	emp:=[]string{"employee"}
+	e := g.Group("/e")
+	e.Use(IsAllowed(emp))
 
-	// ah := g.Group("/ah")
-	// ah.Use(IsAdminandHr())
+	adHr:=[]string{"admin","hr"}
+	ah := g.Group("/ah")
+	ah.Use(IsAllowed(adHr))
 
-	// he := g.Group("/he")
-	// he.Use(IsHrandEmp())
-	route.Init(r,o,a)
+	empHr:=[]string{"employee","hr"}
+	he := g.Group("/he")
+	he.Use(IsAllowed(empHr))
+	route.Init(r,o,a,h,ah,he,e)
 }
 
 // Need to check JWT token here
@@ -94,11 +99,11 @@ func OpenRequestMiddleware() gin.HandlerFunc {
 	}
 }
 
-func IsAdmin() gin.HandlerFunc {
+func IsAllowed(role []string) gin.HandlerFunc { 
 	return func(c *gin.Context) {
 		checkAuth()
 		login, _ := helpers.GetLoginFromToken(c)
-		if login.Role=="admin"{
+		if contains(role,login.Role){
 			c.Next()
 		}else{
 			fmt.Println("Unauthorized access")
@@ -107,4 +112,12 @@ func IsAdmin() gin.HandlerFunc {
 	}
 }
 
+func contains(s []string, e string) bool {
+    for _, a := range s {
+        if a == e {
+            return true
+        }
+    }
+    return false
+}
 

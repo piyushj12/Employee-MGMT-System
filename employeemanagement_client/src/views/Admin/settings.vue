@@ -29,7 +29,7 @@
             </div>
             <div class="col-sm-4">
                 <div class="card p-5">
-                    <h4 class="text-center text-dark">Add Yaerly Holidays</h4>
+                    <h4 class="text-center text-dark">Add Yearly Holidays</h4>
                    <input type="text" placeholder="Enter Level Name" class="form-control" v-model.number="holidays"/>
                    <button class="btn btn-primary btn-sm mt-3" @click="AddField('holidays',holidays)">Add</button>
                 </div>

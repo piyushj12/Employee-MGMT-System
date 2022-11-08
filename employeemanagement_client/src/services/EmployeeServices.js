@@ -62,7 +62,7 @@ export default {
   },
   async deleteEmpPermanently(payload) {
     try {
-      let res = await apiClient.delete("/r/delete/permanently/"+payload.empid);
+      let res = await apiClient.delete("/ah/delete/permanently/"+payload.empid);
       return res.data;
     } catch (error) {
       return error.response.data;
@@ -86,7 +86,7 @@ export default {
   },
   async CaptureClockIn(payload) {
     try {
-      let res = await apiClient.post("/r/capture/clockin",payload);
+      let res = await apiClient.post("/he/capture/clockin",payload);
       return res.data;
     } catch (error) {
       return error.response.data;
@@ -94,7 +94,7 @@ export default {
   },
   async CaptureClockOut(payload) {
     try {
-      let res = await apiClient.post("/r/capture/clockout",payload);
+      let res = await apiClient.post("/he/capture/clockout",payload);
       return res.data;
     } catch (error) {
       return error.response.data;

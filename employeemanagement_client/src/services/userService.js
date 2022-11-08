@@ -23,7 +23,7 @@ export default {
     },
     async addEmployeeService(payload) {
       try{
-        let res = await apiClient.post("/r/add",payload);
+        let res = await apiClient.post("/ah/add",payload);
         return res.data;
       }catch(error){
         return error.response.data.message;
@@ -31,7 +31,7 @@ export default {
   },
   async getAllEmployeesService(payload) {
     try{
-      let res = await apiClient.post("/r/get/all/employees",payload);
+      let res = await apiClient.post("/ah/get/all/employees",payload);
       return res.data;
     }catch(error){
       return error.response.data.message;
@@ -39,7 +39,7 @@ export default {
 },
 async getManagerService() {
   try{
-    let res = await apiClient.get("/r/get/managers")
+    let res = await apiClient.get("/ah/get/managers")
     return res.data;
   }catch(error){
     return error.response.data;
@@ -47,7 +47,7 @@ async getManagerService() {
 },
 async AddField(payload) {
   try{
-    let res = await apiClient.put("/r/update/array",payload)
+    let res = await apiClient.put("/a/update/array",payload)
     return res.data;
   }catch(error){
     return error.response.data;
@@ -55,7 +55,7 @@ async AddField(payload) {
 },
 async getCompanyData() {
   try{
-    let res = await apiClient.get("/r/get/company/data")
+    let res = await apiClient.get("/ah/get/company/data")
     return res.data;
   }catch(error){
     return error.response.data;
@@ -63,7 +63,7 @@ async getCompanyData() {
 },
 async ResetData() {
   try{
-    let res = await apiClient.put("/r/reset/employee/data")
+    let res = await apiClient.put("/a/reset/employee/data")
     return res.data;
   }catch(error){
     return error.response.data;
