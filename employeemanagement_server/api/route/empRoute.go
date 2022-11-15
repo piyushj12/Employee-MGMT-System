@@ -29,7 +29,7 @@ func Init(r,o,a,h,ah,he,e *gin.RouterGroup) {
 	r.POST("/check/clockout/exists",handler.Isclockedout())
 	r.POST("/get/attendance",handler.GetAttendance())
 	a.PUT("/update/array", handler.AddToArray())
-	ah.GET("/get/company/data", handler.GetCompantDataFromDB())
+	r.GET("/get/company/data", handler.GetCompantDataFromDB())
 	a.PUT("/reset/employee/data", handler.AdminResetEmployee())
 	
 }

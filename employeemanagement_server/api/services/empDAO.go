@@ -155,7 +155,10 @@ func AdminallEmpListFromDB(empdetails interface{}) (error,[]model.EmpDetails){
 	var employeelist []model.EmpDetails
 	origin:= empdetails.(map[string]interface {})
 	
-	if err := database.Collection().Find(origin).All(&employeelist); err != nil {
+	if err := database.Collection().Find(bson.M{
+		"empstatus":origin["empstatus"],
+		"email": bson.M{"$nin": []string{"admin@gmail.com"}},
+		}).All(&employeelist); err != nil {
 		return err,[]model.EmpDetails{}
 	}
 	return nil,employeelist
@@ -178,7 +181,7 @@ func DashBoardData(email interface{}) (error, map[string]interface {}){
 			return err,k
 		}
 		query := []bson.M{ 
-			bson.M{"$match":bson.M{"email":origin["email"],"status":"pending"}},
+			bson.M{"$match":bson.M{"manageremail":origin["email"],"status":"pending"}},
 			bson.M{"$count":"pending"},
 		  }
 		  var list []interface{}

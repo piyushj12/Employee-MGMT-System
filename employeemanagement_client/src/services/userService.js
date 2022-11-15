@@ -55,7 +55,7 @@ async AddField(payload) {
 },
 async getCompanyData() {
   try{
-    let res = await apiClient.get("/ah/get/company/data")
+    let res = await apiClient.get("/r/get/company/data")
     return res.data;
   }catch(error){
     return error.response.data;
