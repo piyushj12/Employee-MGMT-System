@@ -8,7 +8,7 @@
 * **Project Software requirement:**
   * Go
   * Vue.js version 2.X
-  * MongoDB
+  * MongoDB (Version number less than or equal to 5)
 
 **Steps to run the application:**
 1. Open the project folder in a VS code.
