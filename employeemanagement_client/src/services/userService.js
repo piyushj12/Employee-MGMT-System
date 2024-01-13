@@ -1,8 +1,11 @@
 import axios from "axios";
 // import router from '../router'
 // import errorjs from "../Javascript/error"
+const HOST = process.env.HOST || "0.0.0.0";
+const PORT = process.env.PORT || "4700";
+
 const apiClient = axios.create({
-  baseURL: "http://localhost:4700",
+  baseURL: `http://${HOST}:${PORT}`,
   withCredentials: false,
   headers: {
     Accept: "application/json",

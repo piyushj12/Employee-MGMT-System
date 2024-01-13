@@ -3,11 +3,13 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"github.com/gin-gonic/gin"
+	"os"
+
 	database "EmployeeAssisgnment/api/database"
-	"github.com/gin-contrib/cors"
 	middleware "EmployeeAssisgnment/middleware"
 
+	"github.com/gin-contrib/cors"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
@@ -44,9 +46,17 @@ func startServer() {
 	router.GET("/", checkStatus())
 
 	s := &http.Server{
-		Addr:    ":4700",
+		Addr:    ":" + getPort(),
 		Handler: router,
 	}
 	database.InitDB()
 	s.ListenAndServe()
+}
+
+func getPort() string {
+	port := "4700"
+	if p := os.Getenv("PORT"); p != "" {
+		port = p
+	}
+	return port
 }
